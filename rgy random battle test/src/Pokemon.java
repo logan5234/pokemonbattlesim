@@ -70,6 +70,13 @@ public class Pokemon {
 		return moveset;
 	}
 	/**
+	 * Getter for learnableMoves
+	 * @return the learnableMoves array
+	 */
+	public Move[] getLearnableMoves() {
+		return learnableMoves;
+	}
+	/**
 	 * toString method override
 	 */
 	public String toString() {
