@@ -6,7 +6,10 @@
 public class Driver {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		View view = new View();
+		
+		
+		
 		/**
 		 * http://www.smogon.com/rb/articles/differences
 		 * 	controller class runs battle loop
@@ -15,7 +18,7 @@ public class Driver {
 		 * 	STARTED player/trainer class
 		 * 		-contains team array, player name
 		 *
-		 * 	pokemon
+		 *  STARTED pokemon
 		 * 		-all at max level with max/most common stat setups
 		 * 		-name, type, array of four moves, health, status
 		 * 		-TODO (important for teambuilder)array of learnable moves?
@@ -33,7 +36,7 @@ public class Driver {
 		 * 		 seaking, starmie, mr. mime, scyther, jynx, electabuzz, magmar, pinsir, tauros, 
 		 * 		 gyarados, lapras, ditto, vaporeon, jolteon, flareon, porygon, omastar, kabutops, 
 		 * 		 aerodactyl, snorlax, articuno, zapdos, moltres, dragonite, mewtwo, mew 
-		 * 	move
+		 * 	STARTED move
 		 *  	-165 moves
 		 *  	-type, damage type(physical/special/status), damage, accuracy, effect, pp
 		 *  	-every move is a child of the move class
@@ -44,7 +47,7 @@ public class Driver {
 		 * 	STARTED type
 		 * 		-array of types
 		 * 		-method describing effictiveness of every type matchup
-		 *  view
+		 *  STARTED view
 		 *  	-text based
 		 *  	-menu
 		 *  		-random battle, two players assigned random pokemon with random (learnable)
