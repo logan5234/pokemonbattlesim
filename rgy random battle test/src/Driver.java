@@ -1,6 +1,6 @@
 /**
  * 
- * @author lbuyea
+ * @author Logan Buyea
  * 
  */
 public class Driver {

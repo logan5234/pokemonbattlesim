@@ -1,6 +1,6 @@
 /** Trainer class representing a player, contains name and array of pokemon team
  *  
- * @author lbuyea
+ * @author Logan Buyea
  *
  */
 public class Trainer {
