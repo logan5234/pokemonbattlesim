@@ -5,7 +5,7 @@
  */
 public class Trainer {
 	private String name;
-	//private Pokemon[] team;
+	private Pokemon[] team;
 	
 	/**
 	 * Constructor
@@ -24,9 +24,9 @@ public class Trainer {
 		name = newName;
 	}
 	
-	/*public void setTeam(Pokemon[] newTeam) {
+	public void setTeam(Pokemon[] newTeam) {
 		newTeam = team;
-	}*/
+	}
 	/**
 	 * Getter for name variable
 	 * @return the name of the Trainer instance
@@ -34,14 +34,21 @@ public class Trainer {
 	public String getName() {
 		return name;
 	}
-	/*public Pokemon[] getTeam() {
+	/**
+	 * Getter for team
+	 * @return the team array
+	 */
+	public Pokemon[] getTeam() {
 		return team;
-	}*/
+	}
 	/**
 	 * toString method returns Trainer name and team list
 	 */
 	public String toString() {
 		//TODO print team array
-		return "Pokemon Trainer " + name; 
+		String result = "Pokemon Trainer " + name;
+		for (int i = 0; i < team.length; i++)
+			result += team[i].toString();
+		return result; 
 	}
 }

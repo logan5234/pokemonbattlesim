@@ -37,6 +37,47 @@ public class Pokemon {
 		type = _type;
 		moveset = _moveset;
 	}
+	
+	/**
+	 * getters
+	 */
+	/**
+	 * Getter for name
+	 * @return name of the pokemon species
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * Getter for nickname
+	 * @return nickname of pokemon if one has been set
+	 */
+	public String getNickname() {
+		return nickname;
+	}
+	/**
+	 * Getter for type
+	 * @return type of pokemon
+	 */
+	public Type getType() {
+		return type;
+	}
+	/**
+	 * Getter for moveset
+	 * @return the moveset array
+	 */
+	public Move[] getMoveset() {
+		return moveset;
+	}
+	/**
+	 * toString method override
+	 */
+	public String toString() {
+		String result = name + " ";
+		if (nickname != "")
+			result += "\"" + nickname + "\" ";
+		return result;
+	}
 }
 
 

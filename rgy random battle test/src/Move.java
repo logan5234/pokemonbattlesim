@@ -1,10 +1,11 @@
 /**
- * 
+ * Move class defining properties of a move
  * @author Logan Buyea
- *
+ * SHOULD BE DONE
  */
 public class Move {
 	
+	String name;
 	Type type;
 	int damage;
 	String damageType;
@@ -12,14 +13,73 @@ public class Move {
 	String effect;
 	int pp;
 	
+	/**
+	 * Constructor
+	 * @param n		the name of the move
+	 * @param t		the type of the move (water/fire/grass/etc)
+	 * @param d		the amount of damage it does
+	 * @param dT	the type of damage (physical/special/status)
+	 * @param a		the accuracy of the move
+	 * @param e		any special effects the move might have(should be one or two words only)
+	 * @param p		the pp (power points) of the move, how many times it can be used
+	 */
+	public Move(String n, Type t, int d, String dT, double a, String e, int p) {
+		type = t;
+		damage = d;
+		damageType = dT;
+		accuracy = a;
+		effect = e;
+		pp = p;
+	}
 	
-	public Move(Type _type, int _damage, String _damageType, double _accuracy, String _effect, int _pp) {
-		type = _type;
-		damage = _damage;
-		damageType = _damageType;
-		accuracy = _accuracy;
-		effect = _effect;
-		pp = _pp;
+	/**
+	 * Getter for type
+	 * @return the type of the move
+	 */
+	public Type getType() {
+		return type;
+	}
+	/**
+	 * Getter for damage
+	 * @return the amount of damage move does
+	 */
+	public int getDamage() {
+		return damage;
+	}
+	/**
+	 * Getter for damageType
+	 * @return the type of damage done
+	 */
+	public String getDamageType() {
+		return damageType;
+	}
+	/**
+	 * Getter for accuracy
+	 * @return the accuracy of the move
+	 */
+	public double getAccuracy() {
+		return accuracy;
+	}
+	/**
+	 * Getter for effect
+	 * @return the effect of the move
+	 */
+	public String getEffect() {
+		return effect;
+	}
+	/**
+	 * Getter for pp
+	 * @return the remaining PP of the move
+	 */
+	public int getPP() {
+		return pp;
+	}
+	
+	/**
+	 * toString method override
+	 */
+	public String toString() {
+		return name + " " + type + " " + damageType + " " + damage + " " + effect + " " + pp;
 	}
 }
 /**move
