@@ -26,6 +26,10 @@ public class Type {
 	 */
 	public void detEff(Type moveType, Type pFirst, Type pSecond) {
 		double eff = 1;
-		
+		//switch statement maybe?
+		//trash this method and then create an effictiveness class?
+		//contains an array of every type, each type has an array of weaknesses/strengths as a
+		//instance variable. type class has no methods, only properties. creating array just feed
+		//in the effectiveness chart.
 	}
 }
