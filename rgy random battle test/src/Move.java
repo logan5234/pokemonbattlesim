@@ -12,6 +12,7 @@ public class Move {
 	double accuracy;
 	String effect;
 	int pp;
+	double critChance;
 	
 	/**
 	 * Constructor
@@ -76,10 +77,19 @@ public class Move {
 	}
 	
 	/**
+	 * Getter for crit chance
+	 * @return the chance to critically hit on a damage move
+	 */
+	public double getCritChance() {
+		return critChance;
+	}
+	
+	/**
 	 * toString method override
 	 */
 	public String toString() {
-		return name + " " + type + " " + damageType + " " + damage + " " + effect + " " + pp;
+		return name + " " + type + " " + damageType + " " + damage + " " + effect + " " + pp
+				+ " " + critChance;
 	}
 }
 /**move

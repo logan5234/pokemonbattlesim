@@ -6,8 +6,19 @@
 public class Driver {
 
 	public static void main(String[] args) {
-		View view = new View();
+		String[] fireW = new String[] {"Water","Ground","Rock"};
+		String[] fireR = new String[] {"Grass","Fire","Bug"};
+		Type fire = new Type("Fire", fireW, fireR);
 		
+		String[] waterW = new String[] {"Electric","Grass"};
+		String[] waterR = new String[] {"Fire","Ice","Water"};
+		Type water = new Type("Water", waterW, waterR);
+		
+		System.out.println("Fire vs Water: " + water.checkEff(fire));
+		System.out.println("Water vs Fire: " + fire.checkEff(water));
+		
+		View view = new View();
+		view.menuDisplay();
 		
 		
 		/**

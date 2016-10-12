@@ -10,12 +10,10 @@ public class View {
 	public View() {
 		inputScan = new Scanner(System.in);
 		//testing
-		System.out.println("Pokemon Gen 1 Battle Simulator");
-		menuDisplay();
-		
 	}
 	
 	public void menuDisplay() {
+		System.out.println("Pokemon Gen 1 Battle Simulator");
 		boolean inMenu = true;
 		System.out.println("Menu: [R]andom Battle(NYI), [T]eam Builder(NYI), [B]attle(NYI)"
 				+ ", [E]xit");
