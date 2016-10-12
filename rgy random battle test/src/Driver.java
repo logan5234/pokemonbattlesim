@@ -23,6 +23,7 @@ public class Driver {
 		
 		/**
 		 * http://www.smogon.com/rb/articles/differences
+		 * https://sites.google.com/site/rbysite/rby-mechanics/1-1-stat-and-damage-formulas
 		 * 	controller class runs battle loop
 		 * 		-damage calculation, win conditions, comparing speed stats, various 
 		 * 		 battle rules(sleep clause, etc??)
