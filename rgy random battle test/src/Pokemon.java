@@ -8,7 +8,7 @@ public class Pokemon {
 	String name;
 	String nickname;
 	Type type;
-	int healt;
+	int health;
 	String status;
 	Move[] moveset;
 	Move[] learnableMoves;
