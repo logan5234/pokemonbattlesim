@@ -1,7 +1,7 @@
 import java.util.Scanner;
 /**
  * View class
- * @author Logan Buyea
+ * @author Logan Buyea & Paige Ludecker
  *
  */
 public class View {

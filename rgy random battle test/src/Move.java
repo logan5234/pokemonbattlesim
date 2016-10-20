@@ -1,6 +1,6 @@
 /**
  * Move class defining properties of a move
- * @author Logan Buyea
+ * @author Logan Buyea & Paige Ludecker
  * SHOULD BE DONE
  */
 public class Move {

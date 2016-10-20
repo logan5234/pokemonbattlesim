@@ -1,6 +1,6 @@
 /**
  * Type class containing array of every type and it's weaknesses/strengths vs other types
- * @author Logan Buyea
+ * @author Logan Buyea & Paige Ludecker
  *
  */
 public class Type {

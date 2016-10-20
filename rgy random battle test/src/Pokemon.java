@@ -1,6 +1,6 @@
 /**
  * 
- * @author Logan Buyea
+ * @author Logan Buyea & Paige Ludecker
  *
  */
 public class Pokemon {
