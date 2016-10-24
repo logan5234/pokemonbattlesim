@@ -1,0 +1,17 @@
+//TYPE LIST
+//name,weakness1,weakness2,etc,resist1,resist2,etc
+Bug,Fire,Flying,Poison,Rock,r,Fighting,Grass,Ground
+Dragon,Dragon,Ice,r,Electric,Fire,Grass,Water
+Electric,Ground,r,Electric,Flying
+Fighting,Flying,Psychic,r,Bug,Rock,
+Fire,Ground,Rock,Water,rBug,rFire,rGrass
+Flying,Electric,Ice,Rock,r,Bug,Fighting,Grass,i,Ground
+Ghost,Ghost,r,Poison,i,Normal,Fighting
+Grass,Bug,Fire,Flying,Ice,Poison,r,Electric,Grass,Ground,Water
+Ground,Grass,Ice,Water,r,Poison,Rock,i,Electric
+Ice,Fighting,Fire,Rock,r,Ice
+Normal,Fighting,i,Ghost
+Poison,Bug,Ground,Psychic,r,Fighting,Grass,Poison
+Psychic,Bug,r,Fighting,Psychic,i,Ghost
+Rock,Fighting,Grass,Ground,Water,r,Fire,Flying,Normal,Poison
+Water,Electric,Grass,r,Fire,Ice,Water

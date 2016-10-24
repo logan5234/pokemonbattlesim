@@ -8,14 +8,16 @@ public class Type {
 	private String type;
 	private String[] weaknesses;
 	private String[] resists;
+	private String[] immunes;
 	
 	/**
 	 * Constructor
 	 */
-	public Type(String _type, String[] _weaknesses, String[] _resists) {
+	public Type(String _type, String[] w, String[] r, String[] i) {
 		type = _type;
-		weaknesses = _weaknesses;
-		resists = _resists;
+		weaknesses = w;
+		resists = r;
+		immunes = i;
 	}
 	/**
 	 * Getter for the name of the type
@@ -38,6 +40,9 @@ public class Type {
 	public String[] getResists() {
 		return resists;
 	}
+	public String[] getImmunes() {
+		return immunes;
+	}
 	/** THIS ACTUALLY WORKS I'M A GENIUS
 	 * Determines the effectiveness of a given type vs another type
 	 * @param moveType the type of the move used against the pokemon of this type
@@ -51,6 +56,9 @@ public class Type {
 		for (int i = 0; i < resists.length; i++)
 			if (moveType.toString().equals(resists[i].toString()))
 				result *= .5;
+		for (int i = 0; i< immunes.length; i++)
+			if (moveType.toString().equals(immunes[i].toString()))
+				result *= 0;
 		return result;
 	}
 	
