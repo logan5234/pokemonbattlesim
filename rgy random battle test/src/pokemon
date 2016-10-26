@@ -64,20 +64,20 @@ Rapidash,Fire,Fire,65,100,70,80,105,Agility,Bide,Body Slam,Double-Edge,Double Te
 Raticate,Normal,Normal,55,81,60,50,97,Bide,Blizzard,Body Slam,Bubble Beam,Dig,Double-Edge,Double Team,Focus Energy,Hyper Beam,Hyper Fang,Ice Beam,Mimic,Quick Attack,Rage,Rest,Skull Bash,Substitute,Super Fang,Swift,Tackle,Tail Whip,Take Down,Thunder,Thunderbolt,Toxic,Water Gun
 Rhydon,Ground,Rock,105,130,120,45,40,Bide,Blizzard,Body Slam,Counter,Dig,Double-Edge,Double Team,Earthquake,Fire Blast,Fissure,Fury Attack,Horn Attack,Horn Drill,Hyper Beam,Ice Beam,Leer,Mega Kick,Mega Punch,Mimic,Pay Day,Rage,Rest,Rock Slide,Seismic Toss,Skull Bash,Stomp,Strength,Submission,Substitute,Surf,Tail Whip,Take Down,Thunder,Thunderbolt,Toxic,Water Gun
 Sandslash,Ground,Ground,75,100,110,55,65,Bide,Body Slam,Cut,Dig,Double-Edge,Double Team,Earthquake,Fissure,Fury Swipes,Hyper Beam,Mimic,Poison Sting,Rage,Rest,Rock Slide,Sand Attack,Scratch,Seismic Toss,Skull Bash,Slash,Strength,Submission,Substitute,Swift,Swords Dance,Take Down,Toxic
-Scyther,Bug,
-Seadra,
-Seaking,
-Slowbro,
-Snorlax,
-Starmie,
-Tangela,
-Tauros,
-Tentacruel,
-Vaporeon,
-Venomoth,
-Venusaur,
-Victreebel,
-Vileplume,
-Weezing,
-Wigglytuff,
-Zapdos,
+Scyther,Bug,Flying,70,110,80,55,105,Agility,Bide,Cut,Double-Edge,Double Team,Focus Energy,Hyper Beam,Leer,Mimic,Quick Attack,Rage,Rest,Skull Bash,Slash,Substitute,Swift,Swords Dance,Take Down,Toxic,Wing Attack
+Seadra,Water,Water,55,65,95,95,85,Agility,Bide,Blizzard,Bubble,Bubble Beam,Double-Edge,Double Team,Hydro Pump,Hyper Beam,Ice Beam,Leer,Mimic,Rage,Rest,Skull Bash,Smokescreen,Substitute,Surf,Swift,Take Down,Toxic, Water Gun
+Seaking,Water,Water,80,92,65,80,68,Agility,Bide,Blizzard,Bubble Beam,Double-Edge,Double Team,Fury Attack,Horn Drill,Hyper Beam,Ice Beam,Mimic,Peck,Rage,Rest,Skull Bash,Substitute,Surf,Swift,Tail Whip,Take Down,Toxic,Waterfall,Water Gun
+Slowbro,Psychic,Water,95,75,110,80,30,Amnesia,Bide,Blizzard,Body Slam,Confusion,Counter,Dig,Disable,Double-Edge,Double Team,Earthquake,Fire Blast,Fissure,Flash,Growl,Headbutt,Hyper Beam,Ice Beam,Mega Kick,Mega Punch,Mimic,Pay Day,Psychic,Psywave,Rage,Reflect,Rest,Seismic Toss,Skull Bash,Strength,Submission,Substitute,Surf,Swift,Take Down,Thunder Wave,Toxic,Tri Attack,Water Gun,Withdraw
+Snorlax,Normal,Normal,160,110,65,65,30,Amnesia,Bide,Blizzard,Body Slam,Bubble Beam,Counter,Double-Edge,Double Team,Earthquake,Fire Blast,Fissure,Harden,Headbutt,Hyper Beam,Ice Beam,Mega Kick,Mega Punch,Metronome,Mimic,Pay Day,Psychic,Psywave,Rage,Reflect,Rest,Rock Slide,Seismic Toss,Self-Destruct,Skull Bash,Solar Beam,Strength,Submission,Surf,Take Down,Thunder,Thunderbolt,Toxic,Water Gun
+Starmie,Psychic,Water,60,75,85,100,115,Bide,Blizzard,Bubble Beam,Double-Edge,Double Team,Flash,Harden,Hydro Pump,Hyper Beam,Ice Beam,Light Screen,Mimic,Minimize,Psychic,Psywave,Rage,Recover,Reflect,Rest,Skull Bash,Substitute,Surf,Swift,Tackle,Take Down,Thunder,Thuderbolt,Thunder Wave,Toxic,Tri Attack,Water Gun
+Tangela,Grass,Grass,65,55,115,100,60,Absorb,Bide,Bind,Body Slam,Constrict,Cut,Double-Edge,Double Team,Growth,Hyper Beam,Mega Drain,Mimic,Poison Powder,Rage,Rest,Skull Bash,Slam,Sleep Powder,Solar Beam,Stun Spore,Substitute,Swords Dance,Take Down,Toxic,Vine Whip
+Tauros,Normal,Normal,75,100,95,70,110,Bide,Blizzard,Body Slam,Double-Edge,Double Team,Earthquake,Fire Blast,Fissure,Horn Drill,Hyper Beam,Ice Beam,Leer,Mimic,Rage,Rest,Skull Bash,Stomp,Strength,Substitute,Tackle,Tail Whip,Take Down,Thunder,Thunderbolt,Toxic
+Tentacruel,Poison,Water,80,70,65,120,100,Acid,Barrier,Bide,Blizzard,Bubble Beam,Confuse Ray,Constrict,Cut,Double-Edge,Double Team,Hydro Pump,Hyper Beam,Ice Beam,Mega Drain,Mimic,Poison Sting,Rage,Reflect,Rest,Screech,Skull Bash,Substitute,Supersonic,Surf,Swords Dance,Take Down,Toxic,Water Gun,Wrap
+Vaporeon,Water,Water,130,65,60,110,65,Acid Armor,Aurora Beam,Bide,Bite,Blizzard,Body Slam,Bubble Beam,Double-Edge,Double Team,Focus Energy,Growl,Haze,Hydro Pump,Ice Beam,Mimic,Mist,Quick Attack,Rage,Reflect,Rest,Sand Attack,Skull Bash,Substitute,Surf,Swift,Tackle,Tail Whip,Take Down,Toxic,Water Gun
+Venomoth,Bug,Poison,70,65,60,90,90,Bide,Confusion,Disable,Double-Edge,Double Team,Flash,Hyper Beam,Leech Life,Mega Drain,Mimic,Poison Powder,Psybeam,Psychic,Psywave,Rage,Razor Wind,Reflect,Rest,Sleep Powder,Solar Beam,Stun Spore,Substitute,Supersonic,Swift,Tackle,Take Down,Toxic,Whirlwind
+Venusaur,Grass,Poison,80,82,83,100,80,Bide,Body Slam,Cut,Double-Edge,Double Team,Growl,Growth,Hyper Beam,Leech Seed,Mega Drain,Mimic,Poison Powder,Rage,Razor Leaf,Reflect,Rest,Sleep Powder,Solar Beam,Substitute,Swords Dance,Tackle,Take Down,Toxic,Vine Whip
+Victreebel,Grass,Poison,80,105,65,100,70,Acid,Bide,Body Slam,Cut,Double-Edge,Double Team,Growth,Hyper Beam,Mega Drain,Mimic,Poison Powder,Rage,Razor Leaf,Reflect,Rest,Slam,Sleep Powder,Solar Beam,Stun Spore,Substitute,Swords Dance,Take Down,Toxic,Vine Whip,Wrap
+Vileplume,Grass,Poison,75,80,85,100,50,Absorb,Acid,Bide,Body Slam,Cut,Double-Edge,Double Team,Hyper Beam,Leech Seed,Mega Drain,Mimic,Petal Dance,Poison Powder,Rage,Reflect,Rest,Sleep Powder,Stun Spore,Substitute,Swords Dance,Take Down,Toxic
+Weezing,Poison,Poison,65,90,120,85,60,Bide,Double Team,Explosion,Fire Blast,Haze,Hyper Beam,Mimic,Rage,Rest,Self-Destruct,Sludge,Smog,Smokescreen,Substitute,Tackle,Thunder,Thunderbolt,Toxic
+Wigglytuff,Normal,Normal,140,70,45,50,45,Bide,Blizzard,Body Slam,Counter,Defense Curl,Disable,Double-Edge,Double Slap,Double Team,Fire Blast,Flash,Hyper Beam,Ice Beam,Mega Kick,Mega Punch,Mimic,Pound,Psychic,Psywave,Rage,Reflect,Rest,Seismic Toss,Sing,Skull Bash,Solar Beam,Strength,Submission,Substitute,Take Down,Thunder,Thunderbolt,Thunder Wave,Toxic,Tri Attack,Water Gun
+Zapdos,Electric,Flying,90,90,85,125,100,Agility,Bide,Double-Edge,Double Team,Drill Peck,Flash,Fly,Hyper Beam,Light Screen,Mimic,Rage,Razor Wind,Reflect,Rest,Sky Attack,Substitute,Swift,Take Down,Thunder,Thunderbolt,Thunder Shock,Thunder Wave,Toxic
