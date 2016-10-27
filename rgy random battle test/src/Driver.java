@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 /**
  * 
  * @author Logan Buyea & Paige Ludecker
@@ -16,6 +19,22 @@ public class Driver {
 		
 		//System.out.println("Fire vs Water: " + water.checkEff(fire));
 		//System.out.println("Water vs Fire: " + fire.checkEff(water));
+		
+		try {
+			Scanner pokemonScan = new Scanner(new File("pokemon.txt")).useDelimiter(",");
+			while (!pokemonScan.hasNext()) {
+				String name = pokemonScan.next();
+				Type type1 = new Type(pokemonScan.next());
+				Type type2 = new Type(pokemonScan.next());
+				int[] stats = {pokemonScan.nextInt(),pokemonScan.nextInt(),pokemonScan.nextInt(),pokemonScan.nextInt(),pokemonScan.nextInt()};
+				
+				}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		View view = new View();
 		view.menuDisplay();

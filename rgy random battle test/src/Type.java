@@ -13,6 +13,9 @@ public class Type {
 	/**
 	 * Constructor
 	 */
+	public Type(String _type) {
+		type = _type;
+	}
 	public Type(String _type, String[] w, String[] r, String[] i) {
 		type = _type;
 		weaknesses = w;
