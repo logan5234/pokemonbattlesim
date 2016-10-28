@@ -1,7 +1,5 @@
-//TYPE LIST
-//name,weakness1,weakness2,etc,resist1,resist2,etc
-Bug,Fire,Flying,Poison,Rock,r,Fighting,Grass,Ground
-Dragon,Dragon,Ice,r,Electric,Fire,Grass,Water
+Bug,Fire Flying Poison Rock,Fighting Grass Ground
+Dragon,Dragon Ice,Electric Fire Grass Water
 Electric,Ground,r,Electric,Flying
 Fighting,Flying,Psychic,r,Bug,Rock,
 Fire,Ground,Rock,Water,rBug,rFire,rGrass

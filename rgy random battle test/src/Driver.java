@@ -1,6 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 /**
  * 
  * @author Logan Buyea & Paige Ludecker
@@ -9,32 +12,35 @@ import java.util.Scanner;
 public class Driver {
 
 	public static void main(String[] args) {
-		String[] fireW = new String[] {"Water","Ground","Rock"};
-		String[] fireR = new String[] {"Grass","Fire","Bug"};
-		//Type fire = new Type("Fire", fireW, fireR);
 		
-		String[] waterW = new String[] {"Electric","Grass"};
-		String[] waterR = new String[] {"Fire","Ice","Water"};
-		//Type water = new Type("Water", waterW, waterR);
-		
-		//System.out.println("Fire vs Water: " + water.checkEff(fire));
-		//System.out.println("Water vs Fire: " + fire.checkEff(water));
-		
+		//does not work :(
 		try {
-			Scanner pokemonScan = new Scanner(new File("pokemon.txt")).useDelimiter(",");
-			while (!pokemonScan.hasNext()) {
-				String name = pokemonScan.next();
-				Type type1 = new Type(pokemonScan.next());
-				Type type2 = new Type(pokemonScan.next());
-				int[] stats = {pokemonScan.nextInt(),pokemonScan.nextInt(),pokemonScan.nextInt(),pokemonScan.nextInt(),pokemonScan.nextInt()};
-				
+			Scanner inputScan = new Scanner(new File("src/types")).useDelimiter(",");
+			String name = "";
+			String[] weakness = {};
+			String[] resist = {};
+			String[] immune = {};
+			Type[] typeArray = new Type[15];
+			int counter = 0;
+			while (counter < 15) {
+				if (inputScan.hasNextLine()) {
+					name = inputScan.next();
+					weakness = inputScan.next().split(" ");
+					resist = inputScan.next().split(" ");
+					if (inputScan.next().equals("i"))
+						immune = inputScan.next().split(" ");
+					counter++;
 				}
+				typeArray[counter] = (new Type(name,weakness,resist,immune));
+				System.out.println(typeArray[counter].toString());
+			}
+			
+			
+			inputScan.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		
 		View view = new View();
 		view.menuDisplay();

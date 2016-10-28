@@ -1,5 +1,3 @@
-//MOVES LIST
-//name,type,damageType,damage,accuracy,pp,effect
 Absorb,Grass,Special,20,100,20,Leeches 50% of the damage dealt
 Acid,Poison,Physical,40,100,30,10% chance to lower the target's Defense by one stage
 Acid Armor,Poison,Status,-1,-1,40,Boosts the user's Defense by two stages
