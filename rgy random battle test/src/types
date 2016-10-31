@@ -1,15 +1,15 @@
-Bug,Fire Flying Poison Rock,Fighting Grass Ground
-Dragon,Dragon Ice,Electric Fire Grass Water
-Electric,Ground,r,Electric,Flying
-Fighting,Flying,Psychic,r,Bug,Rock,
-Fire,Ground,Rock,Water,rBug,rFire,rGrass
-Flying,Electric,Ice,Rock,r,Bug,Fighting,Grass,i,Ground
-Ghost,Ghost,r,Poison,i,Normal,Fighting
-Grass,Bug,Fire,Flying,Ice,Poison,r,Electric,Grass,Ground,Water
-Ground,Grass,Ice,Water,r,Poison,Rock,i,Electric
-Ice,Fighting,Fire,Rock,r,Ice
-Normal,Fighting,i,Ghost
-Poison,Bug,Ground,Psychic,r,Fighting,Grass,Poison
-Psychic,Bug,r,Fighting,Psychic,i,Ghost
-Rock,Fighting,Grass,Ground,Water,r,Fire,Flying,Normal,Poison
-Water,Electric,Grass,r,Fire,Ice,Water
+Bug,Fire Flying Poison Rock,Fighting Grass Ground,,
+Dragon,Dragon Ice,Electric Fire Grass Water,,
+Electric,Ground,Electric Flying,,
+Fighting,Flying Psychic,Bug Rock,,
+Fire,Ground Rock Water,Bug Fire Grass,,
+Flying,Electric Ice Rock,Bug Fighting Grass,Ground,
+Ghost,Ghost,Poison,Normal Fighting,,
+Grass,Bug Fire Flying Ice Poison,Electric Grass Ground Water,,
+Ground,Grass Ice Water,Poison Rock,Electric,
+Ice,Fighting Fire Rock,Ice,,
+Normal,Fighting,,Ghost,
+Poison,Bug Ground Psychic,Fighting Grass Poison,,
+Psychic,Bug,Fighting Psychic,Ghost,
+Rock,Fighting Grass Ground Water,Fire Flying Normal Poison,,
+Water,Electric Grass,Fire Ice Water,,

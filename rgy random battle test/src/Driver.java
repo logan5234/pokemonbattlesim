@@ -27,14 +27,15 @@ public class Driver {
 					name = inputScan.next();
 					weakness = inputScan.next().split(" ");
 					resist = inputScan.next().split(" ");
-					if (inputScan.next().equals("i"))
-						immune = inputScan.next().split(" ");
-					counter++;
+					immune = inputScan.next().split(" ");
+					inputScan.nextLine();
 				}
 				typeArray[counter] = (new Type(name,weakness,resist,immune));
-				System.out.println(typeArray[counter].toString());
+				counter++;
 			}
 			
+			for (int i = 0; i < 15; i++)
+				System.out.println(typeArray[i]);
 			
 			inputScan.close();
 		} catch (FileNotFoundException e) {
