@@ -7,35 +7,64 @@ public class Pokemon {
 	
 	String name;
 	String nickname;
-	Type type;
+	Type type1;
+	Type type2;
 	int health;
+	int attack;
+	int defence;
+	int special;
+	int speed;
 	String status;
 	Move[] moveset;
 	Move[] learnableMoves;
 	
 	/**
 	 * Constructor
-	 * @param _name		the name of the pokemon species
-	 * @param _nickname the nickname of the pokemon if the trainer provides one
-	 * @param _type		the type of the pokemon
-	 * @param _moveset	the moveset of the pokemon
+	 * @param n		the name of the pokemon species
+	 * @param nn	the nickname of the pokemon
+	 * @param t1	the type of the pokemon
+	 * @param t2	the secondary type of the pokemon
+	 * @param hp	the health/hit points of the pokemon
+	 * @param atk	the attack stat of the pokemon
+	 * @param def	the defence stat of the pokemon
+	 * @param spc	the special stat of the pokemon
+	 * @param spe	the speed stat of the pokemon
+	 * @param ls	the learnable moves of the pokemon
 	 */
-	public Pokemon(String _name, String _nickname, Type _type, Move[] _moveset) {
-		name = _name;
-		nickname = _nickname;
-		type = _type;
-		moveset = _moveset;
+	public Pokemon(String n,String nn,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] lm) {
+		name = n;
+		nickname = nn;
+		type1 = t1;
+		type2 = t2;
+		health = hp;
+		attack = atk;
+		defence = def;
+		special = spc;
+		speed = spe;
+		learnableMoves = lm;
 	}
 	/**
 	 * Constructor
-	 * @param _name		the name of the pokemon species
-	 * @param type		the type of the pokemon
-	 * @param _moveset	the moveset of the pokemon
+	 * @param n		the name of the pokemon species
+	 * @param t1	the type of the pokemon
+	 * @param t2	the secondary type of the pokemon
+	 * @param hp	the health/hit points of the pokemon
+	 * @param atk	the attack stat of the pokemon
+	 * @param def	the defence stat of the pokemon
+	 * @param spc	the special stat of the pokemon
+	 * @param spe	the speed stat of the pokemon
+	 * @param ls	the learnable moves of the pokemon
 	 */
-	public Pokemon(String _name, Type _type, Move[] _moveset) {
-		name = _name;
-		type = _type;
-		moveset = _moveset;
+	public Pokemon(String n,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] ls) {
+		name = n;
+		type1 = t1;
+		type2 = t2;
+		health = hp;
+		attack = atk;
+		defence = def;
+		special = spc;
+		speed = spe;
+		learnableMoves = ls;
 	}
 	
 	/**
@@ -56,11 +85,53 @@ public class Pokemon {
 		return nickname;
 	}
 	/**
-	 * Getter for type
+	 * Getter for type1
 	 * @return type of pokemon
 	 */
-	public Type getType() {
-		return type;
+	public Type getType1() {
+		return type1;
+	}
+	/**
+	 * Getter for type2
+	 * @return secondary type of pokemon
+	 */
+	public Type getType2() {
+		return type2;
+	}
+	/**
+	 * Getter for health
+	 * @return the current health of the pokemon
+	 */
+	public int getHP() {
+		return health;
+	}
+	/**
+	 * Getter for attack stat
+	 * @return the attack stat of the pokemon
+	 */
+	public int getATK() {
+		return attack;
+	}
+	/**
+	 * Getter for defence stat
+	 * @return the defence stat of the pokemon
+	 */
+	public int getDEF() {
+		return defence;
+	}
+	/**
+	 * Getter for special stat
+	 * @return the special stat of the pokemon
+	 */
+	public int getSPC() {
+		return special;
+	}
+	/**
+	 * Getter for speed stat
+	 * @return the speed stat of the pokemon
+	 */
+	public int getSPE() {
+		return speed;
 	}
 	/**
 	 * Getter for moveset
@@ -75,6 +146,15 @@ public class Pokemon {
 	 */
 	public Move[] getLearnableMoves() {
 		return learnableMoves;
+	}
+	/**
+	 * setters
+	 */
+	public void setHP(int hp) {
+		health = hp;
+	}
+	public void setMoveset(Move[] ms) {
+		moveset = ms;
 	}
 	/**
 	 * toString method override

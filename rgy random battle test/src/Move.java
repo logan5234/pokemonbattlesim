@@ -9,7 +9,7 @@ public class Move {
 	Type type;
 	int damage;
 	String damageType;
-	double accuracy;
+	int accuracy;
 	String effect;
 	int pp;
 	double critChance;
@@ -21,16 +21,17 @@ public class Move {
 	 * @param d		the amount of damage it does
 	 * @param dT	the type of damage (physical/special/status)
 	 * @param a		the accuracy of the move
-	 * @param e		any special effects the move might have(should be one or two words only)
 	 * @param p		the pp (power points) of the move, how many times it can be used
+	 * @param e		any special effects the move might have(should be one or two words only)
 	 */
-	public Move(String n, Type t, int d, String dT, double a, String e, int p) {
+	public Move(String n, Type t, String dT,int d, int a, int p, String e) {
+		name = n;
 		type = t;
 		damage = d;
 		damageType = dT;
 		accuracy = a;
-		effect = e;
 		pp = p;
+		effect = e;
 	}
 	
 	/**
@@ -88,8 +89,7 @@ public class Move {
 	 * toString method override
 	 */
 	public String toString() {
-		return name + " " + type + " " + damageType + " " + damage + " " + effect + " " + pp
-				+ " " + critChance;
+		return name + " " + type + " " + damageType + " " + damage + " " + accuracy +  " " + pp + " " + effect;
 	}
 }
 /**move
