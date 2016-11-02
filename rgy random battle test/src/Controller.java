@@ -28,6 +28,7 @@ public class Controller {
 		moveArray = initMoveArray();
 		pokemonArray = initPokemonArray();
 		win = false;
+		v.menuDisplay();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public class Controller {
 	 * @return array of Type objects containing every type available for pokemon and moves
 	 */
 	private Type[] initTypeArray() {
-		Type[] typeArray = new Type[15];
+		Type[] typeArray = new Type[16];
 		try {
 			Scanner inputScan = new Scanner(new File("src/types")).useDelimiter(",");
 			String name = "";
@@ -70,7 +71,7 @@ public class Controller {
 			String[] resist = {};
 			String[] immune = {};
 			int counter = 0;
-			while (counter < 15) {
+			while (counter < 16) {
 				if (inputScan.hasNextLine()) {
 					name = inputScan.next();
 					weakness = inputScan.next().split(" ");
@@ -94,7 +95,7 @@ public class Controller {
 	 * @return array of Move objects including every move available to pokemon
 	 */
 	private Move[] initMoveArray() {
-		Move[] moveArray = new Move[159];
+		Move[] moveArray = new Move[160];
 		try {
 			Scanner inputScan = new Scanner(new File("src/moves")).useDelimiter(",");
 			//move = new Move(name,type,damage type,damage,accuracy,pp,effect)
@@ -107,7 +108,7 @@ public class Controller {
 			int pp = 0;
 			String effect = "";
 			int counter = 0;
-			while (counter < 159) {
+			while (counter < 160) {
 				if (inputScan.hasNextLine()) {
 					name = inputScan.next();
 					//System.out.print(name+" ");
@@ -142,10 +143,9 @@ public class Controller {
 	 * @return array of Pokemon objects containing every available pokemon
 	 */
 	private Pokemon[] initPokemonArray() {
-		Pokemon[] pokemonArray = new Pokemon[81];
+		Pokemon[] pokemonArray = new Pokemon[82];
 		try {
 			Scanner inputScan = new Scanner(new File("src/pokemon")).useDelimiter(".");
-			//pokemon = new pokemon(name,type1,type2,hp,atk,def,spc,spe,learnablemoves)
 			String name = "";
 			Type type1 = typeArray[0];
 			String inputType1 = "";
@@ -156,17 +156,22 @@ public class Controller {
 			int def = 0;
 			int spc = 0;
 			int spe = 0;
-			String[] lm = new String[0];
+			String[] lm = {};
 			int counter = 0;
-			while (counter < 81);
+			while (counter < 82) {
 			System.out.println(counter);
 				if (inputScan.hasNextLine()) {
 					name = inputScan.next();
 					System.out.print(name+" ");
-					inputType1 = inputScan.next();
-					System.out.print(inputType1+" ");
-					inputType2 = inputScan.next();
-					System.out.print(inputType2+" ");
+					System.out.print("name");
+					for (int i = 0;i < 15;i++)
+						if (inputType1.equals(typeArray[i].toString()))
+							type1 = typeArray[i];
+					System.out.print(type1.toString()+" ");
+					for (int i = 0;i < 15;i++)
+						if (inputType2.equals(typeArray[i].toString()))
+							type2 = typeArray[i];
+					System.out.print(type2.toString()+" ");
 					hp = Integer.parseInt(inputScan.next());
 					System.out.print(hp+" ");
 					atk = Integer.parseInt(inputScan.next());
@@ -180,6 +185,8 @@ public class Controller {
 					lm = inputScan.next().split(",");
 					System.out.println("");
 				}
+				counter++;
+			}
 			inputScan.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
