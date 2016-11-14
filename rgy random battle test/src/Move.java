@@ -33,7 +33,13 @@ public class Move {
 		pp = p;
 		effect = e;
 	}
-	
+	/**
+	 * Getter for name
+	 * @return the name of the move
+	 */
+	public String getName() {
+		return name;
+	}
 	/**
 	 * Getter for type
 	 * @return the type of the move

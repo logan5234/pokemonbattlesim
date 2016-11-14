@@ -21,7 +21,7 @@ public class Controller {
 	* Contructor
 	* 
 	*/
-	
+	//TODO MAKE BIG METHODS INTO SMALLER METHODS
 	public Controller() {
 		View v = new View();
 		typeArray = initTypeArray();
@@ -98,7 +98,6 @@ public class Controller {
 		Move[] moveArray = new Move[160];
 		try {
 			Scanner inputScan = new Scanner(new File("src/moves")).useDelimiter(",");
-			//move = new Move(name,type,damage type,damage,accuracy,pp,effect)
 			String name = "";
 			Type type = typeArray[0];
 			String inputType = "";
@@ -111,25 +110,17 @@ public class Controller {
 			while (counter < 160) {
 				if (inputScan.hasNextLine()) {
 					name = inputScan.next();
-					//System.out.print(name+" ");
 					inputType = inputScan.next();
-					//System.out.print(type1+" ");
-					for (int i = 0;i < 15;i++)
+					for (int i = 0;i < 16;i++)
 						if (inputType.equals(typeArray[i].toString()))
 							type = typeArray[i];
 					damageType = inputScan.next();
-					//System.out.print(damageType+" ");
 					damage = Integer.parseInt(inputScan.next());
-					//System.out.print(damage+" ");
 					accuracy = Integer.parseInt(inputScan.next());
-					//System.out.print(accuracy+" ");
 					pp = Integer.parseInt(inputScan.next());
-					//System.out.print(pp+" ");
 					effect = inputScan.next();
-					//System.out.println(effect);
 				}
 				moveArray[counter] = (new Move(name,type,damageType,damage,accuracy,pp,effect));
-				//System.out.println(moveArray[counter].toString());
 				counter++;
 			}
 			inputScan.close();
@@ -144,47 +135,49 @@ public class Controller {
 	 */
 	private Pokemon[] initPokemonArray() {
 		Pokemon[] pokemonArray = new Pokemon[82];
+		String name = "";
+		Type type1 = typeArray[0];
+		String inputType1 = "";
+		Type type2 = typeArray[0];
+		String inputType2 = "";
+		int hp = 0;
+		int atk = 0;
+		int def = 0;
+		int spc = 0;
+		int spe = 0;
+		String[] lm = {};
+		Move[] learnableMoves;
+		int counter = 0;
 		try {
-			Scanner inputScan = new Scanner(new File("src/pokemon")).useDelimiter(".");
-			String name = "";
-			Type type1 = typeArray[0];
-			String inputType1 = "";
-			Type type2 = typeArray[0];
-			String inputType2 = "";
-			int hp = 0;
-			int atk = 0;
-			int def = 0;
-			int spc = 0;
-			int spe = 0;
-			String[] lm = {};
-			int counter = 0;
+			//TODO move while loop to private helper method
+			Scanner inputScan = new Scanner(new File("src/pokemon")).useDelimiter("\\.");
 			while (counter < 82) {
-			System.out.println(counter);
 				if (inputScan.hasNextLine()) {
 					name = inputScan.next();
-					System.out.print(name+" ");
-					System.out.print("name");
-					for (int i = 0;i < 15;i++)
+					inputType1 = inputScan.next();
+					for (int i = 0;i < 16;i++)
 						if (inputType1.equals(typeArray[i].toString()))
 							type1 = typeArray[i];
-					System.out.print(type1.toString()+" ");
-					for (int i = 0;i < 15;i++)
+					inputType2 = inputScan.next();
+					for (int i = 0;i < 16;i++)
 						if (inputType2.equals(typeArray[i].toString()))
 							type2 = typeArray[i];
-					System.out.print(type2.toString()+" ");
 					hp = Integer.parseInt(inputScan.next());
-					System.out.print(hp+" ");
 					atk = Integer.parseInt(inputScan.next());
-					System.out.print(atk+" ");
 					def = Integer.parseInt(inputScan.next());
-					System.out.print(def+" ");
 					spc = Integer.parseInt(inputScan.next());
-					System.out.print(spc+" ");
 					spe = Integer.parseInt(inputScan.next());
-					System.out.print(spe+" ");
 					lm = inputScan.next().split(",");
-					System.out.println("");
 				}
+				//TODO move this to private helper method
+				learnableMoves = new Move[lm.length];
+				for (int i = 0;i < 160;i++) {
+					for (int j = 0;j < lm.length;j++) {
+						if (lm[j] == moveArray[i].getName())
+							learnableMoves[j] = moveArray[i];
+					}
+				}
+				pokemonArray[counter] = new Pokemon(name,type1,type2,hp,atk,def,spc,spe,learnableMoves);
 				counter++;
 			}
 			inputScan.close();
