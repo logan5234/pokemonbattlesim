@@ -8,6 +8,8 @@ import java.util.Scanner;
 * 
 */
 public class Controller {
+	
+	private View v;
 	private boolean win;
 	private int healthR;
 	private int healthB;
@@ -27,20 +29,23 @@ public class Controller {
 	*/
 	//TODO MAKE BIG METHODS INTO SMALLER METHODS
 	public Controller() {
-		View v = new View();
+		v = new View();
 		typeArray = initTypeArray();
 		moveArray = initMoveArray();
 		pokemonArray = initPokemonArray();
 		win = false;
-		v.menuDisplay();
+		gameStart();
 	}
-
+	
+	private void gameStart() {
+		String menuSelection = v.menuDisplay();
+	}
+	
 	/**
 	* The method that controls the battle
 	* @param teamR  An array of 6 pokemon objects
 	* @param teamB  An array of 6 pokemon objects
 	*/
-
 	public String battleLoop(String redName, Pokemon[] teamR, String blueName, Pokemon[] teamB) {
 		win = false;
 		String winner = "";
@@ -57,8 +62,8 @@ public class Controller {
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
 				//Choose moves - TODO - write method chooseMove(Pokemon x) in View that returns a move that asks user to choose
-				moveR = v.chooseMove(pokeR);
-				moveB = v.chooseMove(pokeB);
+				moveR = v.chooseMove(pokeR.getMoveset());
+				moveB = v.chooseMove(pokeB.getMoveset());
 				//TODO - Write useMove(Move x) that handles status effects etc
 				// If pokemon have equal speed, teams take turns going first
 				if (speedR == speedB) {
@@ -82,14 +87,14 @@ public class Controller {
 				//TODO - write choosePoke(Pokemon[] teamX) in View that returns the user's next Pokemon choice
 				//Setting to new Pokemon if any fainted in the last round of moves
 				if (healthR <= 0) { 
-					pokeR = v.choosePoke(teamR[]);
+					pokeR = v.choosePoke(teamR);
 					healthR = pokeR.getHP();
-					speedR = pokeR.getSpeed();
+					speedR = pokeR.getSPE();
 				}
 				if (healthB <= 0) { 
-					pokeB = v.choosePoke(teamB[]);
-					healthB = pokeB.getHP()
-					speedB = pokeB.getSpeed();
+					pokeB = v.choosePoke(teamB);
+					healthB = pokeB.getHP();
+					speedB = pokeB.getSPE();
 				}
 				//Checking if there are no pokemon left for either team, the battle loop ends
 				if (pokeR == null) { 
@@ -102,6 +107,11 @@ public class Controller {
 				}
 			}
 		}
+		return winner;
+	}
+	
+	private void useMove(Move m) {
+		
 	}
 	
 	/**
