@@ -14,6 +14,7 @@ public class Pokemon {
 	int defence;
 	int special;
 	int speed;
+	double critChance;
 	String status;
 	Move[] moveset;
 	Move[] learnableMoves;
@@ -41,6 +42,7 @@ public class Pokemon {
 		defence = def;
 		special = spc;
 		speed = spe;
+		critChance = (spe * 100)/512;
 		learnableMoves = lm;
 	}
 	/**
@@ -134,6 +136,20 @@ public class Pokemon {
 		return speed;
 	}
 	/**
+	 * Getter for crit chance
+	 * @return the crit chance of the pokemon
+	 */
+	public double getCritChance() {
+		return critChance;
+	}
+	/**
+	 * Getter for status
+	 * @return the status of the pokemon
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
 	 * Getter for moveset
 	 * @return the moveset array
 	 */
@@ -150,9 +166,73 @@ public class Pokemon {
 	/**
 	 * setters
 	 */
+	/**
+	 * Sets the hp of the pokemon
+	 * @param hp to be set to
+	 */
 	public void setHP(int hp) {
 		health = hp;
 	}
+	/**
+	 * Sets the first type of the pokemon
+	 * @param type1 to be set to
+	 */
+	public void setType1(Type type1) {
+		this.type1 = type1;
+	}
+	/**
+	 * Sets the second type of the pokemon
+	 * @param type2 to be set to
+	 */
+	public void setType2(Type type2) {
+		this.type2 = type2;
+	}
+	/**
+	 * Sets the atk of the pokemon
+	 * @param attack to be set to
+	 */
+	public void setATK(int attack) {
+		this.attack = attack;
+	}
+	/**
+	 * Sets the def of the pokemon
+	 * @param defence to be set to
+	 */
+	public void setDEF(int defence) {
+		this.defence = defence;
+	}
+	/**
+	 * Sets the spc of the pokemon
+	 * @param special to be set to
+	 */
+	public void setSPC(int special) {
+		this.special = special;
+	}
+	/**
+	 * Sets the speed of the pokemon
+	 * @param speed to be set to
+	 */
+	public void setSPE(int speed) {
+		this.speed = speed;
+	}
+	/** 
+	 * Sets the crit chance of the pokemon
+	 * @param critChance to be set to
+	 */
+	public void setCritChance(double critChance) {
+		this.critChance = critChance;
+	}
+	/**
+	 * Sets the status of the pokemon
+	 * @param status to be set to
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	/**
+	 * Sets the moveset of the pokemon
+	 * @param ms to be set to
+	 */
 	public void setMoveset(Move[] ms) {
 		moveset = ms;
 	}

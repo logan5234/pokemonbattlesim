@@ -1,7 +1,7 @@
 /**
  * Move class defining properties of a move
  * @author Logan Buyea & Paige Ludecker
- * SHOULD BE DONE
+ * 
  */
 public class Move {
 	
@@ -12,7 +12,18 @@ public class Move {
 	int accuracy;
 	String effect;
 	int pp;
-	double critChance;
+	
+	/*
+	 * Effects: healing/leech, lower opponent stats, boost self stats,
+	 * 		lower self stats, bide, bind/wrap, flinch, freeze, paralyze,
+	 * 		multi hit, confusion, conversion, counter, highcrit, dig/fly,
+	 * 		disable(disables move), recoil, dragon rage(40hp damage), 
+	 * 		dream eater(leech if asleep), burn, explosion/sd, ohko,
+	 * 		haze(stat reset), recharge, sleep, persistent effect(leech seed/light screen),
+	 * 		metronome, mimic, mirror move, mist, night shade, multihit confuse,
+	 * 		poison, psywave, priority, rage, seismic toss, sonic boom,
+	 * 		substitute, super fang, swift, transform
+	 */
 	
 	/**
 	 * Constructor
@@ -81,14 +92,6 @@ public class Move {
 	 */
 	public int getPP() {
 		return pp;
-	}
-	
-	/**
-	 * Getter for crit chance
-	 * @return the chance to critically hit on a damage move
-	 */
-	public double getCritChance() {
-		return critChance;
 	}
 	
 	/**

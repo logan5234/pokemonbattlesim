@@ -46,8 +46,8 @@ public class Controller {
 		String winner = "";
 		healthR = teamR[0].getHP();
 		healthB = teamB[0].getHP();
-		speedR = teamR[0].getSpeed();
-		speedB = teamB[0].getSpeed();
+		speedR = teamR[0].getSPE();
+		speedB = teamB[0].getSPE();
 		pokeR = teamR[0];
 		pokeB = teamB[0];
 		int fairMoveCount = 0;
@@ -110,13 +110,14 @@ public class Controller {
 	 */
 	private Type[] initTypeArray() {
 		Type[] typeArray = new Type[16];
+		String name = "";
+		String[] weakness = {};
+		String[] resist = {};
+		String[] immune = {};
+		int counter = 0;
 		try {
 			Scanner inputScan = new Scanner(new File("src/types")).useDelimiter(",");
-			String name = "";
-			String[] weakness = {};
-			String[] resist = {};
-			String[] immune = {};
-			int counter = 0;
+			
 			while (counter < 16) {
 				if (inputScan.hasNextLine()) {
 					name = inputScan.next();
@@ -142,17 +143,17 @@ public class Controller {
 	 */
 	private Move[] initMoveArray() {
 		Move[] moveArray = new Move[160];
+		String name = "";
+		Type type = typeArray[0];
+		String inputType = "";
+		String damageType = "";
+		int damage = 0;
+		int accuracy = 0;
+		int pp = 0;
+		String effect = "";
+		int counter = 0;
 		try {
 			Scanner inputScan = new Scanner(new File("src/moves")).useDelimiter(",");
-			String name = "";
-			Type type = typeArray[0];
-			String inputType = "";
-			String damageType = "";
-			int damage = 0;
-			int accuracy = 0;
-			int pp = 0;
-			String effect = "";
-			int counter = 0;
 			while (counter < 160) {
 				if (inputScan.hasNextLine()) {
 					name = inputScan.next();
