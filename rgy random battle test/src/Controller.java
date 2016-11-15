@@ -13,6 +13,10 @@ public class Controller {
 	private int healthB;
 	private Pokemon pokeR;
 	private Pokemon pokeB;
+	private Move moveR;
+	private Move moveB;
+	private int speedR;
+	private int speedB;
 	private Type[] typeArray;
 	private Move[] moveArray;
 	private Pokemon[] pokemonArray;
@@ -37,23 +41,65 @@ public class Controller {
 	* @param teamB  An array of 6 pokemon objects
 	*/
 
-	public void battleLoop(Pokemon[] teamR, Pokemon[] teamB) {
+	public String battleLoop(String redName, Pokemon[] teamR, String blueName, Pokemon[] teamB) {
 		win = false;
+		String winner = "";
 		healthR = teamR[0].getHP();
 		healthB = teamB[0].getHP();
+		speedR = teamR[0].getSpeed();
+		speedB = teamB[0].getSpeed();
 		pokeR = teamR[0];
 		pokeB = teamB[0];
+		int fairMoveCount = 0;
 
 
 		while (!win) {
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
-				//Choose moves
-				//if (pokeR.getSpeed() > pokeB.getSpeed()) {useMove(moveR);}
-				//else {useMove(moveB);}
-				//When switching follow immediately by reassigning which was faster and reset 
-				//health for team to new Pokemon health
-				//First check if there are any pokemon left in array if not win = true;
+				//Choose moves - TODO - write method chooseMove(Pokemon x) in View that returns a move that asks user to choose
+				moveR = v.chooseMove(pokeR);
+				moveB = v.chooseMove(pokeB);
+				//TODO - Write useMove(Move x) that handles status effects etc
+				// If pokemon have equal speed, teams take turns going first
+				if (speedR == speedB) {
+					if (fairMoveCount % 2 == 0) {
+						useMove(moveR);
+						if (healthB > 0) {useMove(moveB);}
+					}
+					else {
+						useMove(moveB);
+						if (healthB > 0) {useMove(moveR);}
+					}
+				}
+				else if (speedR > speedB) {
+					useMove(moveR);
+					if (healthB > 0) {useMove(moveB);}
+				}
+				else {
+					useMove(moveB);
+					if (healthR > 0) {useMove(moveR);}
+				}
+				//TODO - write choosePoke(Pokemon[] teamX) in View that returns the user's next Pokemon choice
+				//Setting to new Pokemon if any fainted in the last round of moves
+				if (healthR <= 0) { 
+					pokeR = v.choosePoke(teamR[]);
+					healthR = pokeR.getHP();
+					speedR = pokeR.getSpeed();
+				}
+				if (healthB <= 0) { 
+					pokeB = v.choosePoke(teamB[]);
+					healthB = pokeB.getHP()
+					speedB = pokeB.getSpeed();
+				}
+				//Checking if there are no pokemon left for either team, the battle loop ends
+				if (pokeR == null) { 
+					win = true; 
+					winner = blueName;
+				}
+				else if (pokeB == null) {
+					win = true;
+					winner = redName;
+				}
 			}
 		}
 	}
