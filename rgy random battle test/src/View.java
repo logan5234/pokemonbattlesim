@@ -77,7 +77,7 @@ public class View {
 		Pokemon pokeX = null;
 		System.out.println("Choose next pokemon:");
 		System.out.println("[1] " + pokeList[0].getName() + "    [2] " + pokeList[1].getName() + "    [3] " + pokeList[2].getName());
-		System.out.println("[4] " + moveList[3].getName() + "    [5] " + moveList[4].getName() + "    [6] " + pokeList[5].getName());
+		System.out.println("[4] " + pokeList[3].getName() + "    [5] " + pokeList[4].getName() + "    [6] " + pokeList[5].getName());
 		boolean inMenu = true;
 		while (inMenu) {
 			switch (inputScan.next()) {
