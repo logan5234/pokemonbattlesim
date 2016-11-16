@@ -59,8 +59,8 @@ public class Controller {
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
 				//Choose moves - TODO - write method chooseMove(Pokemon x) in View that returns a move that asks user to choose
-				moveR = v.chooseMove(pokeR);
-				moveB = v.chooseMove(pokeB);
+				moveR = v.chooseMove(pokeR.getMoveset());
+				moveB = v.chooseMove(pokeB.getMoveset());
 				//TODO - Write useMove(Move x) that handles status effects etc
 				// If pokemon have equal speed, teams take turns going first
 				if (speedR == speedB) {
