@@ -10,7 +10,8 @@ public class Move {
 	int damage;
 	String damageType;
 	int accuracy;
-	String effect;
+	String description;
+	int effect;
 	int pp;
 	
 	/*
@@ -19,10 +20,16 @@ public class Move {
 	 * 		multi hit, confusion, conversion, counter, highcrit, dig/fly,
 	 * 		disable(disables move), recoil, dragon rage(40hp damage), 
 	 * 		dream eater(leech if asleep), burn, explosion/sd, ohko,
-	 * 		haze(stat reset), recharge, sleep, persistent effect(leech seed/light screen),
-	 * 		metronome, mimic, mirror move, mist, night shade, multihit confuse,
+	 * 		haze(stat reset), recharge, sleep,
+	 * 		metronome, mimic, mirror move, mist, night shade, multihit self-confuse,
 	 * 		poison, psywave, priority, rage, seismic toss, sonic boom,
 	 * 		substitute, super fang, swift, transform
+	 * 
+	 * healing, damage over time, stat change, set damage/no power, incapacitate, recoil
+	 * status effects, recover, ohko, dream eater, haze,  dragon rage, multi hit moves
+	 * 
+	 * transform, mimic, mirror move, metronome, sonic boom, priority, substitute,
+	 * 
 	 */
 	
 	/**
@@ -33,17 +40,25 @@ public class Move {
 	 * @param dT	the type of damage (physical/special/status)
 	 * @param a		the accuracy of the move
 	 * @param p		the pp (power points) of the move, how many times it can be used
-	 * @param e		any special effects the move might have(should be one or two words only)
+	 * @param desc	description of the move
 	 */
-	public Move(String n, Type t, String dT,int d, int a, int p, String e) {
+	public Move(String n, Type t, String dT,int d, int a, int p, String desc) {
 		name = n;
 		type = t;
 		damage = d;
 		damageType = dT;
 		accuracy = a;
 		pp = p;
-		effect = e;
+		description = desc;
+		effect = determineEffect();
 	}
+	
+	private int determineEffect() {
+		int result = -1;
+		
+		return result;
+	}
+	
 	/**
 	 * Getter for name
 	 * @return the name of the move
@@ -80,10 +95,17 @@ public class Move {
 		return accuracy;
 	}
 	/**
+	 * Getter for description
+	 * @return the description of the move
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
 	 * Getter for effect
 	 * @return the effect of the move
 	 */
-	public String getEffect() {
+	public int getEffect() {
 		return effect;
 	}
 	/**
@@ -98,7 +120,7 @@ public class Move {
 	 * toString method override
 	 */
 	public String toString() {
-		return name + " " + type + " " + damageType + " " + damage + " " + accuracy +  " " + pp + " " + effect;
+		return name + " " + type + " " + damageType + " " + damage + " " + accuracy +  " " + pp + " " + description;
 	}
 }
 /**move
