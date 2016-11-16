@@ -5,12 +5,11 @@ import java.util.Scanner;
  *
  */
 public class View {
-	Scanner inputScan;
-	Controller c;
 	
-	public View(Controller _c) {
+	Scanner inputScan;
+	
+	public View() {
 		inputScan = new Scanner(System.in);
-		c = _c;
 		//testing
 	}
 	
@@ -22,11 +21,9 @@ public class View {
 			switch (inputScan.next()) {
 				case "C":
 						inMenu = false;
-						c.teamBattle();
 						break;
 				case "R":
 						inMenu = false;
-						c.randomBattle();
 						break;
 				case "E":
 						inMenu = false;

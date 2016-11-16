@@ -8,6 +8,8 @@ import java.util.Scanner;
 * 
 */
 public class Controller {
+	
+	View v;
 	private boolean win;
 	private int healthR;
 	private int healthB;
@@ -27,7 +29,7 @@ public class Controller {
 	*/
 	//TODO MAKE BIG METHODS INTO SMALLER METHODS
 	public Controller() {
-		View v = new View();
+		v = new View();
 		typeArray = initTypeArray();
 		moveArray = initMoveArray();
 		pokemonArray = initPokemonArray();
