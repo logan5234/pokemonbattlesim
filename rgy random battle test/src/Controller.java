@@ -66,21 +66,21 @@ public class Controller {
 				// If pokemon have equal speed, teams take turns going first
 				if (speedR == speedB) {
 					if (fairMoveCount % 2 == 0) {
-						useMove(pokeR,pokeB,moveR);
-						if (healthB > 0) {useMove(pokeB,pokeR,moveB);}
+						useMoveR();
+						if (healthB > 0) {useMoveB();}
 					}
 					else {
-						useMove(pokeB,pokeR,moveB);
-						if (healthB > 0) {useMove(pokeR,pokeB,moveR);}
+						useMoveB();
+						if (healthR > 0) {useMoveR();}
 					}
 				}
 				else if (speedR > speedB) {
-					useMove(pokeR,pokeB,moveR);
-					if (healthB > 0) {useMove(pokeB,pokeR,moveB);}
+					useMoveR();
+					if (healthB > 0) {useMoveB();}
 				}
 				else {
-					useMove(pokeB,pokeR,moveB);
-					if (healthR > 0) {useMove(pokeR,pokeB,moveR);}
+					useMoveB();
+					if (healthR > 0) {useMoveR();}
 				}
 				//TODO - write choosePoke(Pokemon[] teamX) in View that returns the user's next Pokemon choice
 				//Setting to new Pokemon if any fainted in the last round of moves
@@ -118,7 +118,6 @@ public class Controller {
 	 */
 	private double damageCalc(Pokemon user,Pokemon target,Move move) {
 		double result = 0;
-		//check effect;
 		int atk = 0;
 		int def = 0;
 		double STAB = 1;
@@ -141,12 +140,20 @@ public class Controller {
 	/**
 	 * 
 	 */
-	private int useMove(Pokemon user,Pokemon target,Move move) {
-		double damage = 0;
-		if (!move.getType().equals("Status")) {
-			damage = damageCalc(user,target,move);
+	private void useMoveR() {
+		if (!moveR.getType().equals("Status")) {
+			pokeB.setHP((int) (pokeB.getHP() - damageCalc(pokeR,pokeB,moveR)));
 		}
-		return (int) (target.getHP() - damage);
+		//do effect
+	}
+	/**
+	 * 
+	 */
+	private void useMoveB() {
+		if (!moveB.getType().equals("Status")) {
+			pokeR.setHP((int) (pokeR.getHP() - damageCalc(pokeB,pokeR,moveB)));
+		}
+		//do effect
 	}
 	
 	/**
