@@ -14,7 +14,6 @@ public class Pokemon {
 	int defence;
 	int special;
 	int speed;
-	double critChance;
 	String status;
 	Move[] moveset;
 	Move[] learnableMoves;
@@ -42,7 +41,6 @@ public class Pokemon {
 		defence = def;
 		special = spc;
 		speed = spe;
-		critChance = (spe * 100)/512;
 		learnableMoves = lm;
 	}
 	/**
@@ -136,13 +134,6 @@ public class Pokemon {
 		return speed;
 	}
 	/**
-	 * Getter for crit chance
-	 * @return the crit chance of the pokemon
-	 */
-	public double getCritChance() {
-		return critChance;
-	}
-	/**
 	 * Getter for status
 	 * @return the status of the pokemon
 	 */
@@ -214,13 +205,6 @@ public class Pokemon {
 	 */
 	public void setSPE(int speed) {
 		this.speed = speed;
-	}
-	/** 
-	 * Sets the crit chance of the pokemon
-	 * @param critChance to be set to
-	 */
-	public void setCritChance(double critChance) {
-		this.critChance = critChance;
 	}
 	/**
 	 * Sets the status of the pokemon
