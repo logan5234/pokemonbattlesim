@@ -84,14 +84,14 @@ public class Controller {
 				//TODO - write choosePoke(Pokemon[] teamX) in View that returns the user's next Pokemon choice
 				//Setting to new Pokemon if any fainted in the last round of moves
 				if (healthR <= 0) { 
-					pokeR = v.choosePoke(teamR[]);
+					pokeR = v.choosePoke(teamR);
 					healthR = pokeR.getHP();
-					speedR = pokeR.getSpeed();
+					speedR = pokeR.getSPE();
 				}
 				if (healthB <= 0) { 
-					pokeB = v.choosePoke(teamB[]);
-					healthB = pokeB.getHP()
-					speedB = pokeB.getSpeed();
+					pokeB = v.choosePoke(teamB);
+					healthB = pokeB.getHP();
+					speedB = pokeB.getSPE();
 				}
 				//Checking if there are no pokemon left for either team, the battle loop ends
 				if (pokeR == null) { 
@@ -104,7 +104,13 @@ public class Controller {
 				}
 			}
 		}
+		return winner;
 	}
+	
+	/**
+	 * 
+	 */
+	private void useMove(Move move) {}
 	
 	/**
 	 * Scans an input file and builds an array from the contents
