@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
 * Controller class
@@ -65,21 +66,21 @@ public class Controller {
 				// If pokemon have equal speed, teams take turns going first
 				if (speedR == speedB) {
 					if (fairMoveCount % 2 == 0) {
-						useMove(moveR);
-						if (healthB > 0) {useMove(moveB);}
+						useMove(pokeR,pokeB,moveR);
+						if (healthB > 0) {useMove(pokeB,pokeR,moveB);}
 					}
 					else {
-						useMove(moveB);
-						if (healthB > 0) {useMove(moveR);}
+						useMove(pokeB,pokeR,moveB);
+						if (healthB > 0) {useMove(pokeR,pokeB,moveR);}
 					}
 				}
 				else if (speedR > speedB) {
-					useMove(moveR);
-					if (healthB > 0) {useMove(moveB);}
+					useMove(pokeR,pokeB,moveR);
+					if (healthB > 0) {useMove(pokeB,pokeR,moveB);}
 				}
 				else {
-					useMove(moveB);
-					if (healthR > 0) {useMove(moveR);}
+					useMove(pokeB,pokeR,moveB);
+					if (healthR > 0) {useMove(pokeR,pokeB,moveR);}
 				}
 				//TODO - write choosePoke(Pokemon[] teamX) in View that returns the user's next Pokemon choice
 				//Setting to new Pokemon if any fainted in the last round of moves
@@ -108,9 +109,45 @@ public class Controller {
 	}
 	
 	/**
+	 * Calculates the damage a given move will cause on a given pokemon
+	 * @param user		the pokemon that used the move
+	 * @param target	the pokemon the move was used against
+	 * @param move		the move used
+	 * @return			the damage caused
+	 * Total damage = {{[[(Level * CH * 2 / 5)} + 2] * Attack * Power / Defense} / 50]} + 2} * X} * Random / 255}
+	 */
+	private double damageCalc(Pokemon user,Pokemon target,Move move) {
+		double result = 0;
+		//check effect;
+		int atk = 0;
+		int def = 0;
+		double STAB = 1;
+		if (move.getDamageType().equals("Special")) {
+			atk = user.getSPC();
+			def = target.getSPC();
+		} else if (move.getDamageType().equals("Physical")) {
+			atk = user.getATK();
+			def = target.getDEF();
+		}
+		if (user.getType1().equals(move.getType()) || user.getType2().equals(move.getType()))
+			STAB = 1.5;
+		
+		result = (((((42 * atk * move.getDamage() / def) / 50) + 2) * (STAB * target.getType1().checkEff(move.getType())))
+				* ThreadLocalRandom.current().nextInt(217,256) / 255);
+		return result;
+	}
+	
+	
+	/**
 	 * 
 	 */
-	private void useMove(Move move) {}
+	private int useMove(Pokemon user,Pokemon target,Move move) {
+		double damage = 0;
+		if (!move.getType().equals("Status")) {
+			damage = damageCalc(user,target,move);
+		}
+		return (int) (target.getHP() - damage);
+	}
 	
 	/**
 	 * Scans an input file and builds an array from the contents
