@@ -7,11 +7,11 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class View {
+public class View2 {
 
 	public static final int FRAMEHEIGHT = 700;
 	public static final int FRAMEWIDTH = 500;
-	public static final int XHEIGHT = 200
+	public static final int XHEIGHT = 200;
 
 	private JFrame frame;
 	private JPanel battlePanel;
@@ -40,7 +40,7 @@ public class View {
 	private boolean clicked;
 
 
-	public View() {
+	public View2() {
 		frame = new JFrame();
 		frame.setLayout(null);
 		frame.setSize(FRAMEWIDTH, FRAMEHEIGHT);
@@ -53,8 +53,8 @@ public class View {
 		rName = new JLabel("DEFAULT R");
 		bName = new JLabel("DEFAULT B");
 		comments = new JLabel("DEFAULT COMMENT");
-		for (i = 0; i < 4; i++) { moves[i] = new JButton(); }
-		for (i = 0; i < 6; i++) { pokeOptions[i] = new JButton(); } 
+		for (int i = 0; i < 4; i++) { moves[i] = new JButton(); }
+		for (int i = 0; i < 6; i++) { pokeOptions[i] = new JButton(); } 
 		custom = new JButton("Custom Battle");
 		random = new JButton("Random Battle");
 		exit = new JButton("Exit");
@@ -86,13 +86,13 @@ public class View {
 		teamPanel.setSize(FRAMEWIDTH, FRAMEHEIGHT);
 		teamPanel.setLocation(0, 0);
 		teamPanel.add(choosePoke);
-		for (i = 0; i < 6; i++) { teamPanel.add(pokeOptions[i]); }
+		for (int i = 0; i < 6; i++) { teamPanel.add(pokeOptions[i]); }
 		teamPanel.add(backButton);
 
 		//Sets up movesPanel where the player chooses their next move
 		movesPanel = new JPanel();
 		movesPanel.setSize(FRAMEWIDTH, XHEIGHT);
-		movesPanel.setLocation(0, FRAMEHEIGHT - XHEIGHT)
+		movesPanel.setLocation(0, FRAMEHEIGHT - XHEIGHT);
 		movesPanel.setLayout(new GridLayout(2, 2));
 		for (int i = 0; i < 4; i++) {movesPanel.add(moves[i]);}
 
