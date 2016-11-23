@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -10,8 +11,10 @@ import java.util.concurrent.ThreadLocalRandom;
 */
 public class Controller {
 	
-	View v;
+	private View v;
 	private boolean win;
+	private Pokemon[] teamR;
+	private Pokemon[] teamB;
 	private int healthR;
 	private int healthB;
 	private Pokemon pokeR;
@@ -35,7 +38,13 @@ public class Controller {
 		moveArray = initMoveArray();
 		pokemonArray = initPokemonArray();
 		win = false;
-		v.menuDisplay();
+		if (v.menuDisplay().equals("C")) {
+			//
+		} else if (v.menuDisplay().equals("R")) {
+			//random battle
+			randomBattleInit();
+			battleLoop("Red","Blue");
+		}
 	}
 
 	/**
@@ -44,7 +53,7 @@ public class Controller {
 	* @param teamB  An array of 6 pokemon objects
 	*/
 
-	public String battleLoop(String redName, Pokemon[] teamR, String blueName, Pokemon[] teamB) {
+	public String battleLoop(String redName, String blueName) {
 		win = false;
 		String winner = "";
 		healthR = teamR[0].getHP();
@@ -60,6 +69,7 @@ public class Controller {
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
 				//Choose moves - TODO - write method chooseMove(Pokemon x) in View that returns a move that asks user to choose
+				//ANNOUNCER: r sent out pokeR, b sent out pokeB
 				moveR = v.chooseMove(pokeR.getMoveset());
 				moveB = v.chooseMove(pokeB.getMoveset());
 				//TODO - Write useMove(Move x) that handles status effects etc
@@ -67,30 +77,39 @@ public class Controller {
 				if (speedR == speedB) {
 					if (fairMoveCount % 2 == 0) {
 						useMoveR();
+						//ANNOUNCER: pokeR used moveR
 						if (healthB > 0) {useMoveB();}
+						//ANNOUNCER: pokeB used moveB
 					}
 					else {
 						useMoveB();
+						//ANNOUNCER: pokeB used moveB
 						if (healthR > 0) {useMoveR();}
 					}
 				}
 				else if (speedR > speedB) {
 					useMoveR();
+					//ANNOUNCER: pokeR used moveR
 					if (healthB > 0) {useMoveB();}
+					//ANNOUNCER: pokeB used moveB
 				}
 				else {
 					useMoveB();
+					//ANNOUNCER: pokeB used moveB
 					if (healthR > 0) {useMoveR();}
+					//ANNOUNCER: pokeR used moveR
 				}
 				//TODO - write choosePoke(Pokemon[] teamX) in View that returns the user's next Pokemon choice
 				//Setting to new Pokemon if any fainted in the last round of moves
 				if (healthR <= 0) { 
 					pokeR = v.choosePoke(teamR);
+					//ANNCOUNCER: r sent out pokeR
 					healthR = pokeR.getHP();
 					speedR = pokeR.getSPE();
 				}
 				if (healthB <= 0) { 
 					pokeB = v.choosePoke(teamB);
+					//ANNCOUNCER: b sent out pokeB
 					healthB = pokeB.getHP();
 					speedB = pokeB.getSPE();
 				}
@@ -106,6 +125,14 @@ public class Controller {
 			}
 		}
 		return winner;
+	}
+	
+	private void randomBattleInit() {
+		Random r = new Random(82);
+		for (int i = 0; i < 6; i++) {
+			teamR[i] = pokemonArray[r.nextInt()];
+			teamB[i] = pokemonArray[r.nextInt()];
+		}
 	}
 	
 	/**
@@ -286,5 +313,4 @@ public class Controller {
 		}
 		return pokemonArray;
 	}
-	
 }
