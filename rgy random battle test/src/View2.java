@@ -42,6 +42,8 @@ public class View2 {
 	private boolean clicked;
 	private int pmChoice;
 	private char menuChoice;
+	private Pokemon pokeChoice;
+	private Pokemon moveChoice;
 
 
 	public View2() {
@@ -52,8 +54,10 @@ public class View2 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		clicked = false;
-		pmChoice = 69;
+		pmChoice = 3;
 		menuChoice = 'D';
+		pokeChoice = null;
+		moveChoice = null;
 		title = new JLabel("Pokemon Gen 1 Battle Simulator");
 		choosePoke = new JLabel("Choose your next Pokemon:");
 		rName = new JLabel("DEFAULT R");
@@ -129,36 +133,40 @@ public class View2 {
 		return menuChoice;
 	}
 	
-	public int chooseMove() {
+	public Move chooseMove(Move[] moveList) {
 		frame.remove(commentPanel);
 		frame.add(movePanel);
-		pmChoice = 69; //If 69 is returned something went wrong
+		pmChoice = 3;
 		clicked = false;
 		
 		while (!clicked) {
 			//Wait
 		}
 		
+		moveChoice = moveList[pmChoice];
 		frame.remove(movePanel);
 		frame.add(commentPanel);
-		return pmChoice;
+
+		return moveChoice;
 	}
 	
-	public int choosePoke() {
+	public Pokemon choosePoke(Pokemon[] teamX) {
 		frame.remove(battlePanel);
 		frame.remove(commentPanel);
 		frame.add(teamPanel);
-		pmChoice = 69; //If 69 is returned something went wrong
+		pmChoice = 3;
 		clicked = false;
 		
 		while (!clicked) {
 			//Wait
 		}
 		
+		pokeChoice = teamX[pmChoice];
 		frame.remove(teamPanel);
 		frame.add(battlePanel);
 		frame.add(commentPanel);
-		return pmChoice;
+
+		return pokeChoice;
 	}
 	
 	public void setUpBattle(Pokemon pokeR, Pokemon pokeB) {
