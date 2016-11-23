@@ -25,6 +25,8 @@ public class View2 {
 	private JLabel rName;
 	private JLabel bName;
 	private JLabel comments;
+	private JLabel rHP;
+	private JLabel bHP;
 	//private ImageIcon spriteR;
 	//private ImageIcon spriteB;
 
@@ -38,6 +40,8 @@ public class View2 {
 	//private JButton switchPoke;
 
 	private boolean clicked;
+	private int pmChoice;
+	private char menuChoice;
 
 
 	public View2() {
@@ -48,11 +52,15 @@ public class View2 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		clicked = false;
+		pmChoice = 69;
+		menuChoice = 'D';
 		title = new JLabel("Pokemon Gen 1 Battle Simulator");
 		choosePoke = new JLabel("Choose your next Pokemon:");
 		rName = new JLabel("DEFAULT R");
 		bName = new JLabel("DEFAULT B");
 		comments = new JLabel("DEFAULT COMMENT");
+		rHP = new JLabel("Remaining/Total");
+		bHP = new JLabel("Remaining/Total");
 		for (int i = 0; i < 4; i++) { moves[i] = new JButton(); }
 		for (int i = 0; i < 6; i++) { pokeOptions[i] = new JButton(); } 
 		custom = new JButton("Custom Battle");
@@ -108,7 +116,8 @@ public class View2 {
 	public char mainMenu() {
 		//set up menu display
 		frame.add(menuPanel);
-		char choice = 'D'; //D will mean that something went wrong and no choice was made
+		clicked = false;
+		menuChoice = 'D'; //D = no choice was made somehow
 
 		//checks if user has made a choice yet
 		while (!clicked) {
@@ -116,13 +125,137 @@ public class View2 {
 			catch (InterruptedException e) {}
 		}
 
-		
-		return choice;
+		frame.remove(menuPanel);
+		return menuChoice;
 	}
+	
+	public int chooseMove() {
+		frame.remove(commentPanel);
+		frame.add(movePanel);
+		pmChoice = 69; //If 69 is returned something went wrong
+		clicked = false;
+		
+		while (!clicked) {
+			//Wait
+		}
+		
+		frame.remove(movePanel);
+		frame.add(commentPanel);
+		return pmChoice;
+	}
+	
+	public int choosePoke() {
+		frame.remove(battlePanel);
+		frame.remove(commentPanel);
+		frame.add(teamPanel);
+		pmChoice = 69; //If 69 is returned something went wrong
+		clicked = false;
+		
+		while (!clicked) {
+			//Wait
+		}
+		
+		frame.remove(teamPanel);
+		frame.add(battlePanel);
+		frame.add(commentPanel);
+		return pmChoice;
+	}
+	
+	public void setUpBattle(Pokemon pokeR, Pokemon pokeB) {
+		rName = setText(pokeR.getName());
+		bName = setText(pokeB.getName());
+		//Total vs current HP??
+		//rHP.setText(pokeR.getHP() + "/" + pokeR.getHP());
+		//bHP = 
+		frame.add(battlePanel);
+		frame.add(commentPanel);
+	
+	}
+	public void switchPokeR(Pokemon x) {
+		rName = setText(x.getName());
+		//spriteR = x.getSprite();
+		//Get HP
+		
+	}
+	
+	public void switchPokeB(Pokemon x) {
+		bName = setText(x.getName());
+		//spriteB = x.getSprite();
+		//Get HP
+		
+	}
+	
+	public void commentary(String x) {
+		comments.setText(x);
+		//commentPanel.paintImmediately();??
+	}
+	
+	/**
+	* Button handlers for ALL THOSE BUTTONS.  Sets clicked to true and returns the button number.
+	*/
 
-	//private class customButtonHandler implements ActionListener {
-	//	public void actionPerformed(ActionEvent e) {
-	//
-	//	}
-	//}
+	private class customButtonHandler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			menuChoice = 'C';
+			clicked = true;
+		}
+	}
+	
+	private class randomButtonHandler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			menuChoice = 'R';
+			clicked = true;
+		}
+	}
+	
+	private class exitButtonHandler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			menuChoice = 'E';
+			clicked = true;
+		}
+	}
+	
+	private class pm0Handler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			pmChoice = 0;
+			clicked = true;
+		}
+	}
+	
+	private class pm1Handler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			pmChoice = 1;
+			clicked = true;
+		}
+	}
+	
+	private class pm2Handler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			pmChoice = 2;
+			clicked = true;
+		}
+	}
+	
+	private class pm3Handler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			pmChoice = 3;
+			clicked = true;
+		}
+	}
+	
+	private class pm4Handler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			pmChoice = 4;
+			clicked = true;
+		}
+	}
+	
+	private class pm5Handler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			pmChoice = 5;
+			clicked = true;
+		}
+	}
+	
+	
 }
