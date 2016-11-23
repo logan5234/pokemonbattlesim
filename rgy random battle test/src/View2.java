@@ -134,6 +134,10 @@ public class View2 {
 	}
 	
 	public Move chooseMove(Move[] moveList) {
+		for (int i = 0; i < 4; i++) {
+		moves[i].setLabel(moveList[i].getName() + "/" + moveList[i].getPP());
+		}
+		
 		frame.remove(commentPanel);
 		frame.add(movePanel);
 		pmChoice = 3;
@@ -151,6 +155,10 @@ public class View2 {
 	}
 	
 	public Pokemon choosePoke(Pokemon[] teamX) {
+		for (int i = 0; i < 6; i++) {
+		pokeOptions[i].setLabel(teamX[i].getName() + "/" + teamX[i].getHP());
+		}
+		
 		frame.remove(battlePanel);
 		frame.remove(commentPanel);
 		frame.add(teamPanel);
@@ -197,6 +205,7 @@ public class View2 {
 		comments.setText(x);
 		//commentPanel.paintImmediately();??
 	}
+	public void exit() { System.exit(0); }
 	
 	/**
 	* Button handlers for ALL THOSE BUTTONS.  Sets clicked to true and returns the button number.
@@ -218,7 +227,7 @@ public class View2 {
 	
 	private class exitButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			menuChoice = 'E';
+			exit();
 			clicked = true;
 		}
 	}
