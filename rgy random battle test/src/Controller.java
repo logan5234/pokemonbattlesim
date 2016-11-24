@@ -13,6 +13,8 @@ public class Controller {
 	
 	private View v;
 	private boolean win;
+	private boolean validChoice;
+	private boolean someoneLeftAlive;
 	private Pokemon[] teamR;
 	private Pokemon[] teamB;
 	private int healthR;
@@ -23,6 +25,7 @@ public class Controller {
 	private Move moveB;
 	private int speedR;
 	private int speedB;
+	private int randomNum;
 	private Type[] typeArray;
 	private Move[] moveArray;
 	private Pokemon[] pokemonArray;
@@ -31,19 +34,20 @@ public class Controller {
 	* Contructor
 	* 
 	*/
-	//TODO MAKE BIG METHODS INTO SMALLER METHODS
 	public Controller() {
 		v = new View();
 		typeArray = initTypeArray();
 		moveArray = initMoveArray();
 		pokemonArray = initPokemonArray();
 		win = false;
+		someoneLeftAlive = false;
 		if (v.menuDisplay().equals("C")) {
 			//
 		} else if (v.menuDisplay().equals("R")) {
 			//random battle
 			randomBattleInit();
-			battleLoop("Red","Blue");
+			String w = battleLoop("Red","Blue");
+			v.commentary(w + " has won the battle"); //or something like that
 		}
 	}
 
@@ -68,59 +72,80 @@ public class Controller {
 		while (!win) {
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
-				//Choose moves - TODO - write method chooseMove(Pokemon x) in View that returns a move that asks user to choose
-				//ANNOUNCER: r sent out pokeR, b sent out pokeB
+				v.commentary(redName + " sent out " + pokeR.getName() + ", " + blueName + " sent out " + pokeB.getName());
 				moveR = v.chooseMove(pokeR.getMoveset());
 				moveB = v.chooseMove(pokeB.getMoveset());
-				//TODO - Write useMove(Move x) that handles status effects etc
-				// If pokemon have equal speed, teams take turns going first
+				
 				if (speedR == speedB) {
 					if (fairMoveCount % 2 == 0) {
 						useMoveR();
-						//ANNOUNCER: pokeR used moveR
-						if (healthB > 0) {useMoveB();}
-						//ANNOUNCER: pokeB used moveB
+						v.commentary(pokeR.getName() + " used " + moveR.getName());
+						if (healthB > 0) {
+							useMoveB();
+							v.commentary(pokeB.getName() + " used " + moveB.getName());
+						}
+						fairMoveCount++;
 					}
 					else {
 						useMoveB();
-						//ANNOUNCER: pokeB used moveB
-						if (healthR > 0) {useMoveR();}
+						v.commentary(pokeB.getName() + " used " + moveB.getName());
+						if (healthR > 0) {
+							useMoveR();
+							v.commentary(pokeR.getName() + " used " + moveR.getName());
+						}
+						
+						fairMoveCount++;
 					}
 				}
 				else if (speedR > speedB) {
 					useMoveR();
-					//ANNOUNCER: pokeR used moveR
-					if (healthB > 0) {useMoveB();}
-					//ANNOUNCER: pokeB used moveB
+					v.commentary(pokeR.getName() + " used " + moveR.getName());
+					if (healthB > 0) {
+						useMoveB();
+						v.commentary(pokeB.getName() + " used " + moveB.getName());}
 				}
 				else {
 					useMoveB();
-					//ANNOUNCER: pokeB used moveB
-					if (healthR > 0) {useMoveR();}
-					//ANNOUNCER: pokeR used moveR
+					v.commentary(pokeB.getName() + " used " + moveB.getName());
+					if (healthR > 0) {
+						useMoveR();
+						v.commentary(pokeR.getName() + " used " + moveR.getName());
+					}
 				}
-				//TODO - write choosePoke(Pokemon[] teamX) in View that returns the user's next Pokemon choice
-				//Setting to new Pokemon if any fainted in the last round of moves
-				if (healthR <= 0) { 
-					pokeR = v.choosePoke(teamR);
-					//ANNCOUNCER: r sent out pokeR
-					healthR = pokeR.getHP();
-					speedR = pokeR.getSPE();
+				//Checking if there are no pokemon left for either team, if so, the battle loop ends
+				for (int i = 0; i < 6; i++) {
+					if (teamR[i].getHP() > 0) {
+						someoneLeftAlive = true;
+					}
 				}
-				if (healthB <= 0) { 
-					pokeB = v.choosePoke(teamB);
-					//ANNCOUNCER: b sent out pokeB
-					healthB = pokeB.getHP();
-					speedB = pokeB.getSPE();
-				}
-				//Checking if there are no pokemon left for either team, the battle loop ends
-				if (pokeR == null) { 
+				if (!someoneLeftAlive) {
 					win = true; 
 					winner = blueName;
 				}
-				else if (pokeB == null) {
-					win = true;
+				someoneLeftAlive = false;
+				for (int i = 0; i < 6; i++) {
+					if (teamB[i].getHP() > 0) {
+						someoneLeftAlive = true;
+					}
+				}
+				if (!someoneLeftAlive) {
+					win = true; 
 					winner = redName;
+				}
+				
+				//Setting to new Pokemon if any fainted in the last round of moves as long as 
+				// there are still some left
+				if (!win && healthR <= 0) { 
+					pokeR = v.choosePoke(teamR);
+					v.commentary(redName + " sent out " + pokeR);
+					healthR = pokeR.getHP();
+					speedR = pokeR.getSPE();
+				}
+				if (!win && healthB <= 0) { 
+					pokeB = v.choosePoke(teamB);
+					v.commentary(blueName + " sent out " + pokeB);
+					healthB = pokeB.getHP();
+					speedB = pokeB.getSPE();
 				}
 			}
 		}
@@ -129,9 +154,19 @@ public class Controller {
 	
 	private void randomBattleInit() {
 		Random r = new Random(82);
+		randomNum = r.nextInt();
 		for (int i = 0; i < 6; i++) {
-			teamR[i] = pokemonArray[r.nextInt()];
-			teamB[i] = pokemonArray[r.nextInt()];
+			teamR[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2, 
+					      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
+					      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE, 
+					      pokemonArray[randomNum].getLearnableMoves());
+		}
+		randomNum = r.nextInt();
+		for (int i = 0; i < 6; i++) {
+			teamB[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2, 
+					      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
+					      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE, 
+					      pokemonArray[randomNum].getLearnableMoves());
 		}
 	}
 	
