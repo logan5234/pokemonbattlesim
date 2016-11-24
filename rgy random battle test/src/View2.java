@@ -1,3 +1,4 @@
+
 /**
 * View.java- the version of the view that includes a GUI
 * 
@@ -5,9 +6,10 @@
 */
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
-public class View2 {
+public class View {
 
 	public static final int FRAMEHEIGHT = 700;
 	public static final int FRAMEWIDTH = 500;
@@ -43,10 +45,10 @@ public class View2 {
 	private int pmChoice;
 	private char menuChoice;
 	private Pokemon pokeChoice;
-	private Pokemon moveChoice;
+	private Move moveChoice;
 
 
-	public View2() {
+	public View() {
 		frame = new JFrame();
 		frame.setLayout(null);
 		frame.setSize(FRAMEWIDTH, FRAMEHEIGHT);
@@ -65,12 +67,29 @@ public class View2 {
 		comments = new JLabel("DEFAULT COMMENT");
 		rHP = new JLabel("Remaining/Total");
 		bHP = new JLabel("Remaining/Total");
+		
 		for (int i = 0; i < 4; i++) { moves[i] = new JButton(); }
-		for (int i = 0; i < 6; i++) { pokeOptions[i] = new JButton(); } 
+		moves[0].addActionListener(new pm0Handler());
+		moves[1].addActionListener(new pm1Handler());
+		moves[2].addActionListener(new pm2Handler());
+		moves[3].addActionListener(new pm3Handler());
+		
+		for (int i = 0; i < 6; i++) { pokeOptions[i] = new JButton(); }
+		pokeOptions[0].addActionListener(new pm0Handler());
+		pokeOptions[1].addActionListener(new pm1Handler());
+		pokeOptions[2].addActionListener(new pm2Handler());
+		pokeOptions[3].addActionListener(new pm3Handler());
+		pokeOptions[4].addActionListener(new pm4Handler());
+		pokeOptions[5].addActionListener(new pm5Handler());
+		
 		custom = new JButton("Custom Battle");
+		custom.addActionListener(new customButtonHandler());
 		random = new JButton("Random Battle");
+		random.addActionListener(new randomButtonHandler());
 		exit = new JButton("Exit");
+		exit.addActionListener(new exitButtonHandler());
 		backButton = new JButton("Back");
+		
 		//move = new JButton("Choose Move");
 		//switchPoke = new JButton("Switch Pokemon");
 		//set up ImageIcons for active pokemon
@@ -135,11 +154,11 @@ public class View2 {
 	
 	public Move chooseMove(Move[] moveList) {
 		for (int i = 0; i < 4; i++) {
-		moves[i].setLabel(moveList[i].getName() + "/" + moveList[i].getPP());
+		moves[i].setText(moveList[i].getName() + "/" + moveList[i].getPP());
 		}
 		
 		frame.remove(commentPanel);
-		frame.add(movePanel);
+		frame.add(movesPanel);
 		pmChoice = 3;
 		clicked = false;
 		
@@ -148,7 +167,7 @@ public class View2 {
 		}
 		
 		moveChoice = moveList[pmChoice];
-		frame.remove(movePanel);
+		frame.remove(movesPanel);
 		frame.add(commentPanel);
 
 		return moveChoice;
@@ -156,7 +175,7 @@ public class View2 {
 	
 	public Pokemon choosePoke(Pokemon[] teamX) {
 		for (int i = 0; i < 6; i++) {
-		pokeOptions[i].setLabel(teamX[i].getName() + "/" + teamX[i].getHP());
+		pokeOptions[i].setText(teamX[i].getName() + "/" + teamX[i].getHP());
 		}
 		
 		frame.remove(battlePanel);
@@ -178,8 +197,8 @@ public class View2 {
 	}
 	
 	public void setUpBattle(Pokemon pokeR, Pokemon pokeB) {
-		rName = setText(pokeR.getName());
-		bName = setText(pokeB.getName());
+		rName.setText(pokeR.getName());
+		bName.setText(pokeB.getName());
 		//Total vs current HP??
 		//rHP.setText(pokeR.getHP() + "/" + pokeR.getHP());
 		//bHP = 
@@ -188,14 +207,14 @@ public class View2 {
 	
 	}
 	public void switchPokeR(Pokemon x) {
-		rName = setText(x.getName());
+		rName.setText(x.getName());
 		//spriteR = x.getSprite();
 		//Get HP
 		
 	}
 	
 	public void switchPokeB(Pokemon x) {
-		bName = setText(x.getName());
+		bName.setText(x.getName());
 		//spriteB = x.getSprite();
 		//Get HP
 		
