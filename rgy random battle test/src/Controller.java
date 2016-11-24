@@ -47,7 +47,7 @@ public class Controller {
 			//random battle
 			randomBattleInit();
 			String w = battleLoop("Red","Blue");
-			v.commentary(w + " has won the battle"); //or something like that
+			//v.commentary(w + " has won the battle"); //or something like that
 		}
 	}
 
@@ -72,44 +72,42 @@ public class Controller {
 		while (!win) {
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
-				v.commentary(redName + " sent out " + pokeR.getName() + ", " + blueName + " sent out " + pokeB.getName());
+				//v.commentary(redName + " sent out " + pokeR.getName() + ", " + blueName + " sent out " + pokeB.getName());
 				moveR = v.chooseMove(pokeR.getMoveset());
 				moveB = v.chooseMove(pokeB.getMoveset());
 				
 				if (speedR == speedB) {
 					if (fairMoveCount % 2 == 0) {
 						useMoveR();
-						v.commentary(pokeR.getName() + " used " + moveR.getName());
+						//v.commentary(pokeR.getName() + " used " + moveR.getName());
 						if (healthB > 0) {
 							useMoveB();
-							v.commentary(pokeB.getName() + " used " + moveB.getName());
+							//v.commentary(pokeB.getName() + " used " + moveB.getName());
 						}
 						fairMoveCount++;
-					}
-					else {
+					} else {
 						useMoveB();
-						v.commentary(pokeB.getName() + " used " + moveB.getName());
+						//v.commentary(pokeB.getName() + " used " + moveB.getName());
 						if (healthR > 0) {
 							useMoveR();
-							v.commentary(pokeR.getName() + " used " + moveR.getName());
+							//v.commentary(pokeR.getName() + " used " + moveR.getName());
 						}
 						
 						fairMoveCount++;
 					}
-				}
-				else if (speedR > speedB) {
+				} else if (speedR > speedB) {
 					useMoveR();
-					v.commentary(pokeR.getName() + " used " + moveR.getName());
+					//v.commentary(pokeR.getName() + " used " + moveR.getName());
 					if (healthB > 0) {
 						useMoveB();
-						v.commentary(pokeB.getName() + " used " + moveB.getName());}
-				}
-				else {
+						//v.commentary(pokeB.getName() + " used " + moveB.getName());}
+					} 
+				} else {
 					useMoveB();
-					v.commentary(pokeB.getName() + " used " + moveB.getName());
+					//v.commentary(pokeB.getName() + " used " + moveB.getName());
 					if (healthR > 0) {
 						useMoveR();
-						v.commentary(pokeR.getName() + " used " + moveR.getName());
+						//v.commentary(pokeR.getName() + " used " + moveR.getName());
 					}
 				}
 				//Checking if there are no pokemon left for either team, if so, the battle loop ends
@@ -137,13 +135,13 @@ public class Controller {
 				// there are still some left
 				if (!win && healthR <= 0) { 
 					pokeR = v.choosePoke(teamR);
-					v.commentary(redName + " sent out " + pokeR);
+					//v.commentary(redName + " sent out " + pokeR);
 					healthR = pokeR.getHP();
 					speedR = pokeR.getSPE();
 				}
 				if (!win && healthB <= 0) { 
 					pokeB = v.choosePoke(teamB);
-					v.commentary(blueName + " sent out " + pokeB);
+					//v.commentary(blueName + " sent out " + pokeB);
 					healthB = pokeB.getHP();
 					speedB = pokeB.getSPE();
 				}
@@ -156,16 +154,16 @@ public class Controller {
 		Random r = new Random(82);
 		randomNum = r.nextInt();
 		for (int i = 0; i < 6; i++) {
-			teamR[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2, 
+			teamR[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2(), 
 					      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
-					      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE, 
+					      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE(), 
 					      pokemonArray[randomNum].getLearnableMoves());
 		}
 		randomNum = r.nextInt();
 		for (int i = 0; i < 6; i++) {
-			teamB[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2, 
+			teamB[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2(), 
 					      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
-					      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE, 
+					      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE(), 
 					      pokemonArray[randomNum].getLearnableMoves());
 		}
 	}
