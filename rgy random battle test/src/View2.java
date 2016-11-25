@@ -1,6 +1,6 @@
 
 /**
-* View.java- the version of the view that includes a GUI
+* View2.java- the version of the view that includes a GUI
 * 
 * @author Paige Ludecker & Logan Buyea
 */
@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class View2 {
 
-	public static final int FRAMEHEIGHT = 700;
+	public static final int FRAMEHEIGHT = 500;
 	public static final int FRAMEWIDTH = 500;
 	public static final int XHEIGHT = 200;
 
@@ -29,11 +29,11 @@ public class View2 {
 	private JLabel comments;
 	private JLabel rHP;
 	private JLabel bHP;
-	//private ImageIcon spriteR;
-	//private ImageIcon spriteB;
+	private JLabel spriteR;
+	private JLabel spriteB;
 
-	private JButton[] moves;
-	private JButton[] pokeOptions;
+	private JButton moves[];
+	private JButton pokeOptions[];
 	private JButton custom;
 	private JButton random;
 	private JButton exit;
@@ -48,7 +48,7 @@ public class View2 {
 	private Move moveChoice;
 
 
-	public View2() {
+	public View() {
 		frame = new JFrame();
 		frame.setLayout(null);
 		frame.setSize(FRAMEWIDTH, FRAMEHEIGHT);
@@ -60,20 +60,24 @@ public class View2 {
 		menuChoice = 'D';
 		pokeChoice = null;
 		moveChoice = null;
-		title = new JLabel("Pokemon Gen 1 Battle Simulator");
+		title = new JLabel("Pokemon Gen 1 Battle Simulator", SwingConstants.CENTER);
+		title.setFont(new Font("Serif", Font.PLAIN, 18));
 		choosePoke = new JLabel("Choose your next Pokemon:");
+		choosePoke.setFont(new Font("Serif", Font.PLAIN, 18));
 		rName = new JLabel("DEFAULT R");
 		bName = new JLabel("DEFAULT B");
 		comments = new JLabel("DEFAULT COMMENT");
-		rHP = new JLabel("Remaining/Total");
-		bHP = new JLabel("Remaining/Total");
+		rHP = new JLabel("Remaining/Total", SwingConstants.LEFT);
+		bHP = new JLabel("Remaining/Total", SwingConstants.RIGHT);
 		
+		moves = new JButton[4];
 		for (int i = 0; i < 4; i++) { moves[i] = new JButton(); }
 		moves[0].addActionListener(new pm0Handler());
 		moves[1].addActionListener(new pm1Handler());
 		moves[2].addActionListener(new pm2Handler());
 		moves[3].addActionListener(new pm3Handler());
 		
+		pokeOptions = new JButton[6];
 		for (int i = 0; i < 6; i++) { pokeOptions[i] = new JButton(); }
 		pokeOptions[0].addActionListener(new pm0Handler());
 		pokeOptions[1].addActionListener(new pm1Handler());
@@ -99,8 +103,18 @@ public class View2 {
 		battlePanel = new JPanel();
 		battlePanel.setSize(FRAMEWIDTH, FRAMEHEIGHT - XHEIGHT);
 		battlePanel.setLocation(0, 0);
+		battlePanel.setLayout(new GridLayout(3, 2));
 		battlePanel.add(rName);
 		battlePanel.add(bName);
+		battlePanel.add(rHP);
+		battlePanel.add(bHP);
+		spriteR = new JLabel(new ImageIcon("src/Ninetales2.png"));
+		spriteB = new JLabel(new ImageIcon("src/Pikachu.png"));
+		battlePanel.add(spriteR);
+		battlePanel.add(spriteB);
+		
+		//battlePanel.add(rHP, BorderLayout.NORTH);
+		//battlePanel.add(bHP, BorderLayout.NORTH);
 
 		//Creates menu screen and sets up its implements
 		menuPanel = new JPanel();
@@ -132,13 +146,15 @@ public class View2 {
 		commentPanel.setSize(FRAMEWIDTH, XHEIGHT);
 		commentPanel.setLocation(0, FRAMEHEIGHT - XHEIGHT);
 		commentPanel.add(comments);
-
+		
 		frame.setVisible(true); 
 	}
 
 	public char mainMenu() {
 		//set up menu display
 		frame.add(menuPanel);
+		//menuPanel.paintImmediately(menuPanel.getVisibleRect());
+		frame.setVisible(true);
 		clicked = false;
 		menuChoice = 'D'; //D = no choice was made somehow
 
@@ -149,27 +165,33 @@ public class View2 {
 		}
 
 		frame.remove(menuPanel);
+		frame.setVisible(true);
 		return menuChoice;
 	}
 	
 	public Move chooseMove(Move[] moveList) {
 		for (int i = 0; i < 4; i++) {
 		moves[i].setText(moveList[i].getName() + "/" + moveList[i].getPP());
+			//moves[i].setText(moveList[i].getName());
 		}
 		
 		frame.remove(commentPanel);
 		frame.add(movesPanel);
+		frame.setVisible(true);
+		
 		pmChoice = 3;
 		clicked = false;
 		
 		while (!clicked) {
-			//Wait
+			try { Thread.sleep(200);}
+			catch (InterruptedException e) {}
 		}
 		
 		moveChoice = moveList[pmChoice];
 		frame.remove(movesPanel);
 		frame.add(commentPanel);
-
+		frame.setVisible(true);
+		
 		return moveChoice;
 	}
 	
@@ -181,29 +203,42 @@ public class View2 {
 		frame.remove(battlePanel);
 		frame.remove(commentPanel);
 		frame.add(teamPanel);
+		frame.setVisible(true);
+		
 		pmChoice = 3;
 		clicked = false;
 		
 		while (!clicked) {
-			//Wait
+			try { Thread.sleep(200);}
+			catch (InterruptedException e) {}
 		}
 		
 		pokeChoice = teamX[pmChoice];
 		frame.remove(teamPanel);
 		frame.add(battlePanel);
 		frame.add(commentPanel);
+		frame.setVisible(true);
 
 		return pokeChoice;
 	}
 	
 	public void setUpBattle(Pokemon pokeR, Pokemon pokeB) {
 		rName.setText(pokeR.getName());
+		rName.setHorizontalAlignment(SwingConstants.LEFT);
 		bName.setText(pokeB.getName());
+		bName.setHorizontalAlignment(SwingConstants.RIGHT);
+		rHP.setText("HP:  " + pokeR.getHP());
+		rHP.setHorizontalAlignment(SwingConstants.LEFT);
+		bHP.setText("HP:  " + pokeB.getHP());
+		bHP.setHorizontalAlignment(SwingConstants.RIGHT);
+		//spriteR = new JLabel(new ImageIcon("Charizard2.png"));
+		//spriteB = new ImageIcon("Ninetales.png");
 		//Total vs current HP??
 		//rHP.setText(pokeR.getHP() + "/" + pokeR.getHP());
 		//bHP = 
 		frame.add(battlePanel);
 		frame.add(commentPanel);
+		frame.setVisible(true);
 	
 	}
 	public void switchPokeR(Pokemon x) {
@@ -222,12 +257,15 @@ public class View2 {
 	
 	public void commentary(String x) {
 		comments.setText(x);
-		//commentPanel.paintImmediately();??
+		commentPanel.paintImmediately(commentPanel.getVisibleRect());
+		try { Thread.sleep(2000);}
+		catch (InterruptedException e) {}
 	}
+	
 	public void exit() { System.exit(0); }
 	
 	/**
-	* Button handlers for ALL THOSE BUTTONS.  Sets clicked to true and returns the button number.
+	* Button handlers for ALL THOSE BUTTONS.  Sets clicked to true and returns the button number or abbreviation.
 	*/
 
 	private class customButtonHandler implements ActionListener {
