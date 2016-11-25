@@ -156,4 +156,4 @@ Vine Whip,Grass,Special,35,100,10,None,
 Water Gun,Water,Special,40,100,25,None,
 Waterfall,Water,Special,80,100,15,None,
 Withdraw,Water,Status,-1,-1,40,Boosts the user's Defense by one stage,
-Wrap,Normal,Physical,15,85,20,Prevents the opponent from attacking and deals damage to it at the end of every turn for two to five turns,
+Wrap,Normal,Physical,15,85,20,Prevents the opponent from attacking and deals damage to it at the end of every turn for two to five turns

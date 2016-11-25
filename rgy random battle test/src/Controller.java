@@ -151,20 +151,23 @@ public class Controller {
 	}
 	
 	private void randomBattleInit() {
-		Random r = new Random(82);
-		randomNum = r.nextInt();
+		Random r = new Random();
 		for (int i = 0; i < 6; i++) {
-			teamR[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2(), 
-					      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
-					      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE(), 
-					      pokemonArray[randomNum].getLearnableMoves());
+			//TODO throws nullpointerexception here, even though randomNum is a valid index, no idea why
+			randomNum = r.nextInt(pokemonArray.length-1) + 1;
+			teamR[i] = pokemonArray[randomNum];
+			//teamR[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2(), 
+			//		      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
+			//		      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE(), 
+			//		      pokemonArray[randomNum].getLearnableMoves());
 		}
-		randomNum = r.nextInt();
 		for (int i = 0; i < 6; i++) {
-			teamB[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2(), 
-					      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
-					      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE(), 
-					      pokemonArray[randomNum].getLearnableMoves());
+			randomNum = r.nextInt(pokemonArray.length-1) + 1;
+			teamB[i] = pokemonArray[randomNum];
+			//teamB[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2(), 
+			//		      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
+			//		      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE(), 
+			//		      pokemonArray[randomNum].getLearnableMoves());
 		}
 	}
 	
