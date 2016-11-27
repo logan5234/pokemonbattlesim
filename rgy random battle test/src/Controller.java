@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 */
 public class Controller {
 	
-	private View v;
+	private View2 v;
 	private boolean win;
 	private boolean validChoice;
 	private boolean someoneLeftAlive;
@@ -39,7 +39,7 @@ public class Controller {
 	* 
 	*/
 	public Controller() {
-		v = new View();
+		v = new View2();
 		typeArray = initTypeArray();
 		moveArray = initMoveArray();
 		pokemonArray = initPokemonArray();
@@ -205,14 +205,14 @@ public class Controller {
 			teamR[i] = new Pokemon(pokemonArray[rNum].getName(), pokemonArray[rNum].getType1(), pokemonArray[rNum].getType2(), 
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
-					      pokemonArray[rNum].getLearnableMoves(), pokemonArray[rNum].getFront(), pokemonArray[rNum].getBack());
+					      pokemonArray[rNum].getLearnableMoves());
 		}
 		rNum = r.nextInt(82);
 		for (int i = 0; i < 6; i++) {
 			teamB[i] = new Pokemon(pokemonArray[rNum].getName(), pokemonArray[rNum].getType1(), pokemonArray[rNum].getType2(), 
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
-					      pokemonArray[rNum].getLearnableMoves(), pokemonArray[rNum].getFront(), pokemonArray[rNum].getBack());
+					      pokemonArray[rNum].getLearnableMoves());
 		}
 	}
 	
@@ -354,10 +354,6 @@ public class Controller {
 		int spe = 0;
 		String[] lm = {};
 		Move[] learnableMoves;
-		ImageIcon front;
-		ImageIcon back;
-		String f = "";
-		String b = "";
 		int counter = 0;
 		try {
 			//TODO move while loop to private helper method
@@ -379,8 +375,6 @@ public class Controller {
 					spc = Integer.parseInt(inputScan.next());
 					spe = Integer.parseInt(inputScan.next());
 					lm = inputScan.next().split(",");
-					f = inputScan.next();
-					b = inputScan.next();
 				}
 				//TODO move this to private helper method
 				learnableMoves = new Move[lm.length];
@@ -390,9 +384,7 @@ public class Controller {
 							learnableMoves[j] = moveArray[i];
 					}
 				}
-				front = new ImageIcon("src/".concat(f));
-				back = new ImageIcon("src/".concat(b));
-				pokemonArray[counter] = new Pokemon(name,type1,type2,hp,atk,def,spc,spe,learnableMoves,front,back);
+				pokemonArray[counter] = new Pokemon(name,type1,type2,hp,atk,def,spc,spe,learnableMoves);
 				counter++;
 			}
 			inputScan.close();

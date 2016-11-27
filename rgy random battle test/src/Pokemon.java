@@ -37,7 +37,7 @@ public class Pokemon {
 	 * @param spe	the speed stat of the pokemon
 	 * @param ls	the learnable moves of the pokemon
 	 */
-	public Pokemon(String n,String nn,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] lm,ImageIcon front,ImageIcon back) {
+	public Pokemon(String n,String nn,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] lm) {
 		name = n;
 		nickname = nn;
 		type1 = t1;
@@ -48,8 +48,8 @@ public class Pokemon {
 		special = spc;
 		speed = spe;
 		learnableMoves = lm;
-		frontSprite = front;
-		backSprite = back;
+		frontSprite = new ImageIcon("src/sprites/"+name+"2.png");
+		backSprite = new ImageIcon("src/sprites/"+name+".png");
 	}
 	/**
 	 * Constructor
@@ -63,7 +63,7 @@ public class Pokemon {
 	 * @param spe	the speed stat of the pokemon
 	 * @param ls	the learnable moves of the pokemon
 	 */
-	public Pokemon(String n,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] ls,ImageIcon front,ImageIcon back) {
+	public Pokemon(String n,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] ls) {
 		name = n;
 		type1 = t1;
 		type2 = t2;
@@ -73,8 +73,8 @@ public class Pokemon {
 		special = spc;
 		speed = spe;
 		learnableMoves = ls;
-		frontSprite = front;
-		backSprite = back;
+		frontSprite = new ImageIcon("src/sprites/"+name+"2.png");
+		backSprite = new ImageIcon("src/sprites/"+name+".png");
 	}
 	
 	/**

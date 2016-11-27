@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class View {
+public class View2 {
 
 	public static final int FRAMEHEIGHT = 550;
 	public static final int FRAMEWIDTH = 500;
@@ -48,7 +48,7 @@ public class View {
 	private Move moveChoice;
 
 
-	public View() {
+	public View2() {
 		frame = new JFrame();
 		frame.setLayout(null);
 		frame.setSize(FRAMEWIDTH, FRAMEHEIGHT);
