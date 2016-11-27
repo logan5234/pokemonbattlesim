@@ -1,6 +1,6 @@
 
 /**
-* View2.java- the version of the view that includes a GUI
+* View.java- the version of the view that includes a GUI
 * 
 * @author Paige Ludecker & Logan Buyea
 */
@@ -9,9 +9,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class View2 {
+public class View {
 
-	public static final int FRAMEHEIGHT = 500;
+	public static final int FRAMEHEIGHT = 550;
 	public static final int FRAMEWIDTH = 500;
 	public static final int XHEIGHT = 200;
 
@@ -104,6 +104,7 @@ public class View2 {
 		battlePanel.setSize(FRAMEWIDTH, FRAMEHEIGHT - XHEIGHT);
 		battlePanel.setLocation(0, 0);
 		battlePanel.setLayout(new GridLayout(3, 2));
+		battlePanel.setBackground(Color.WHITE);
 		battlePanel.add(rName);
 		battlePanel.add(bName);
 		battlePanel.add(rHP);
@@ -231,6 +232,8 @@ public class View2 {
 		rHP.setHorizontalAlignment(SwingConstants.LEFT);
 		bHP.setText("HP:  " + pokeB.getHP());
 		bHP.setHorizontalAlignment(SwingConstants.RIGHT);
+		spriteR.setIcon(pokeR.getBack());
+		spriteB.setIcon(pokeB.getFront());
 		//spriteR = new JLabel(new ImageIcon("Charizard2.png"));
 		//spriteB = new ImageIcon("Ninetales.png");
 		//Total vs current HP??
