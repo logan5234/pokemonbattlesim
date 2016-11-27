@@ -1,3 +1,7 @@
+import java.io.File;
+
+import javax.swing.ImageIcon;
+
 /**
  * 
  * @author Logan Buyea & Paige Ludecker
@@ -17,6 +21,8 @@ public class Pokemon {
 	String status;
 	Move[] moveset;
 	Move[] learnableMoves;
+	ImageIcon frontSprite;
+	ImageIcon backSprite;
 	
 	/**
 	 * Constructor
@@ -31,7 +37,7 @@ public class Pokemon {
 	 * @param spe	the speed stat of the pokemon
 	 * @param ls	the learnable moves of the pokemon
 	 */
-	public Pokemon(String n,String nn,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] lm) {
+	public Pokemon(String n,String nn,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] lm,ImageIcon front,ImageIcon back) {
 		name = n;
 		nickname = nn;
 		type1 = t1;
@@ -42,6 +48,8 @@ public class Pokemon {
 		special = spc;
 		speed = spe;
 		learnableMoves = lm;
+		frontSprite = front;
+		backSprite = back;
 	}
 	/**
 	 * Constructor
@@ -55,7 +63,7 @@ public class Pokemon {
 	 * @param spe	the speed stat of the pokemon
 	 * @param ls	the learnable moves of the pokemon
 	 */
-	public Pokemon(String n,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] ls) {
+	public Pokemon(String n,Type t1,Type t2,int hp,int atk,int def,int spc,int spe,Move[] ls,ImageIcon front,ImageIcon back) {
 		name = n;
 		type1 = t1;
 		type2 = t2;
@@ -65,6 +73,8 @@ public class Pokemon {
 		special = spc;
 		speed = spe;
 		learnableMoves = ls;
+		frontSprite = front;
+		backSprite = back;
 	}
 	
 	/**
@@ -154,6 +164,13 @@ public class Pokemon {
 	public Move[] getLearnableMoves() {
 		return learnableMoves;
 	}
+	public ImageIcon getFront() {
+		return frontSprite;
+	}
+	
+	public ImageIcon getBack() {
+		return backSprite;
+	}
 	/**
 	 * setters
 	 */
@@ -220,6 +237,13 @@ public class Pokemon {
 	public void setMoveset(Move[] ms) {
 		moveset = ms;
 	}
+	public void setFront(ImageIcon f) {
+		frontSprite = f;
+	}
+	public void setBack(ImageIcon b) {
+		backSprite = b;
+	}
+	
 	/**
 	 * toString method override
 	 */
@@ -230,27 +254,3 @@ public class Pokemon {
 		return result;
 	}
 }
-
-
-
-
-
-/** 	pokemon
- * 		-all at max level with max/most common stat setups
- * 		-name, type, array of four moves, health, status
- * 		-TODO (important for teambuilder)array of learnable moves?
- * 		-every different max evolved pokemon (so every available pokemon in this project)
- * 		 is a child of the pokemon class
- * 		-OR every pokemon is a pokemon object in an array built from file input
- * 		-each move has it's own method(so moveSlot1() uses move at index 1)
- * 		-venusaur, charizard, blastoise, butterfree, beedrill, pidgeot, raticate, 
- * 		 fearow, arbok, raichu, sandslash, nidoqueen, nidoking, clefable, ninetails, 
- * 		 wigglytuff, golbat, vileplume, parasect, venomoth, dugtrio, persian, golduck, 
- * 		 primeape, arcanine, poliwrath, alakazam, machamp, victreebel, tentacruel, 
- * 		 golem, rapidash, slowbro, magneton, farfetch'd, dodrio, dewgong, muk, cloyster,
- * 		 gengar, onix, hypno, kingler, electrode, exeggutor, marowak, hitmonlee, 
- * 		 hitmonchan, lickitung, weezing, rhydon, chansey, tangela, kangaskhan, seadra, 
- * 		 seaking, starmie, mr. mime, scyther, jynx, electabuzz, magmar, pinsir, tauros, 
- * 		 gyarados, lapras, ditto, vaporeon, jolteon, flareon, porygon, omastar, kabutops, 
- * 		 aerodactyl, snorlax, articuno, zapdos, moltres, dragonite, mewtwo, mew 
-*/
