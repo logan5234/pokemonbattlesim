@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.swing.ImageIcon;
+
 /**
 * Controller class
 * @author Paige Ludecker & Logan Buyea
@@ -15,6 +17,7 @@ public class Controller {
 	private boolean win;
 	private boolean validChoice;
 	private boolean someoneLeftAlive;
+	private char menuChoice;
 	private Pokemon[] teamR;
 	private Pokemon[] teamB;
 	private int healthR;
@@ -25,7 +28,8 @@ public class Controller {
 	private Move moveB;
 	private int speedR;
 	private int speedB;
-	private int randomNum;
+	private String rName;
+	private String bName;
 	private Type[] typeArray;
 	private Move[] moveArray;
 	private Pokemon[] pokemonArray;
@@ -39,16 +43,40 @@ public class Controller {
 		typeArray = initTypeArray();
 		moveArray = initMoveArray();
 		pokemonArray = initPokemonArray();
+		
+		//View testing section
+		Pokemon[] teamX = {pokemonArray[4], pokemonArray[72], pokemonArray[81], pokemonArray[56], pokemonArray[0], pokemonArray[22]};
+		Pokemon chosen = v.choosePoke(teamX);
+		Move[] setX = {moveArray[1], moveArray[4], moveArray[20], moveArray[45]};
+		v.setUpBattle(pokemonArray[22], pokemonArray[4]);
+		v.commentary(chosen.getName());
+		Move m = v.chooseMove(setX);
+		//System.out.println(m.getName());
+		//v.commentary("Overlap working?");
+		Move[] moveSetX = pokemonArray[44].getLearnableMoves();
+		//System.out.println(moveSetX[1].toString());
+		
+		
 		win = false;
 		someoneLeftAlive = false;
-		if (v.menuDisplay().equals("C")) {
-			//
-		} else if (v.menuDisplay().equals("R")) {
+		menuChoice = v.mainMenu();
+		while (true) {
+		if (menuChoice == 'C') {
+			//for testing purposes
+			//rName = customTeamBuilder();
+			//bName = customTeamBuilder();
+			String w = battleLoop(rName, bName);
+			v.commentary(w + " has won the battle");
+			menuChoice = v.mainMenu();
+		} else if (menuChoice == 'R') {
 			//random battle
 			randomBattleInit();
-			String w = battleLoop("Red","Blue");
-			//v.commentary(w + " has won the battle"); //or something like that
-		}
+			rName = "Red";
+			bName = "Blue";
+			String w = battleLoop(rName,bName);
+			v.commentary(w + " has won the battle"); //or something like that
+			menuChoice = v.mainMenu();
+		}}
 	}
 
 	/**
@@ -73,43 +101,54 @@ public class Controller {
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
 				//v.commentary(redName + " sent out " + pokeR.getName() + ", " + blueName + " sent out " + pokeB.getName());
-				moveR = v.chooseMove(pokeR.getMoveset());
-				moveB = v.chooseMove(pokeB.getMoveset());
+				validChoice = false;
+				while (!validChoice) {
+					moveR = v.chooseMove(pokeR.getMoveset());
+					if (moveR.getPP() > 0) {validChoice = true;}
+				}
+				validChoice = false;
+				while (!validChoice) {
+					moveB = v.chooseMove(pokeB.getMoveset());
+					if (moveB.getPP() > 0) {validChoice = true;}
+				}
 				
 				if (speedR == speedB) {
 					if (fairMoveCount % 2 == 0) {
 						useMoveR();
-						//v.commentary(pokeR.getName() + " used " + moveR.getName());
+						v.commentary(pokeR.getName() + " used " + moveR.getName());
 						if (healthB > 0) {
 							useMoveB();
-							//v.commentary(pokeB.getName() + " used " + moveB.getName());
+							v.commentary(pokeB.getName() + " used " + moveB.getName());
 						}
 						fairMoveCount++;
-					} else {
+					} 
+				 else {
 						useMoveB();
-						//v.commentary(pokeB.getName() + " used " + moveB.getName());
+						v.commentary(pokeB.getName() + " used " + moveB.getName());
 						if (healthR > 0) {
 							useMoveR();
-							//v.commentary(pokeR.getName() + " used " + moveR.getName());
+							v.commentary(pokeR.getName() + " used " + moveR.getName());
 						}
 						
 						fairMoveCount++;
-					}
-				} else if (speedR > speedB) {
+					}}  
+				 else if (speedR > speedB) {
 					useMoveR();
-					//v.commentary(pokeR.getName() + " used " + moveR.getName());
+					v.commentary(pokeR.getName() + " used " + moveR.getName());
 					if (healthB > 0) {
 						useMoveB();
-						//v.commentary(pokeB.getName() + " used " + moveB.getName());}
-					} 
-				} else {
+						v.commentary(pokeB.getName() + " used " + moveB.getName());
+					} } 
+				 else {
 					useMoveB();
-					//v.commentary(pokeB.getName() + " used " + moveB.getName());
+					v.commentary(pokeB.getName() + " used " + moveB.getName());
 					if (healthR > 0) {
 						useMoveR();
-						//v.commentary(pokeR.getName() + " used " + moveR.getName());
+						v.commentary(pokeR.getName() + " used " + moveR.getName());
 					}
 				}
+				
+				
 				//Checking if there are no pokemon left for either team, if so, the battle loop ends
 				for (int i = 0; i < 6; i++) {
 					if (teamR[i].getHP() > 0) {
@@ -134,14 +173,22 @@ public class Controller {
 				//Setting to new Pokemon if any fainted in the last round of moves as long as 
 				// there are still some left
 				if (!win && healthR <= 0) { 
-					pokeR = v.choosePoke(teamR);
-					//v.commentary(redName + " sent out " + pokeR);
+					validChoice = false;
+					while (!validChoice) {
+						pokeR = v.choosePoke(teamR);
+						if (pokeR.getHP() > 0) {validChoice = true;}
+					}
+					v.commentary(redName + " sent out " + pokeR);
 					healthR = pokeR.getHP();
 					speedR = pokeR.getSPE();
 				}
 				if (!win && healthB <= 0) { 
-					pokeB = v.choosePoke(teamB);
-					//v.commentary(blueName + " sent out " + pokeB);
+					validChoice = false;
+					while (!validChoice) {
+						pokeB = v.choosePoke(teamB);
+						if (pokeB.getHP() > 0) {validChoice = true;}
+					}
+					v.commentary(blueName + " sent out " + pokeB);
 					healthB = pokeB.getHP();
 					speedB = pokeB.getSPE();
 				}
@@ -152,22 +199,20 @@ public class Controller {
 	
 	private void randomBattleInit() {
 		Random r = new Random();
+		int rNum = r.nextInt(82);
+		System.out.println(rNum);
 		for (int i = 0; i < 6; i++) {
-			//TODO throws nullpointerexception here, even though randomNum is a valid index, no idea why
-			randomNum = r.nextInt(pokemonArray.length-1) + 1;
-			teamR[i] = pokemonArray[randomNum];
-			//teamR[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2(), 
-			//		      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
-			//		      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE(), 
-			//		      pokemonArray[randomNum].getLearnableMoves());
+			teamR[i] = new Pokemon(pokemonArray[rNum].getName(), pokemonArray[rNum].getType1(), pokemonArray[rNum].getType2(), 
+					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
+					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
+					      pokemonArray[rNum].getLearnableMoves(), pokemonArray[rNum].getFront(), pokemonArray[rNum].getBack());
 		}
+		rNum = r.nextInt(82);
 		for (int i = 0; i < 6; i++) {
-			randomNum = r.nextInt(pokemonArray.length-1) + 1;
-			teamB[i] = pokemonArray[randomNum];
-			//teamB[i] = new Pokemon(pokemonArray[randomNum].getName(), pokemonArray[randomNum].getType1(), pokemonArray[randomNum].getType2(), 
-			//		      pokemonArray[randomNum].getHP(), pokemonArray[randomNum].getATK(), pokemonArray[randomNum].getDEF(), 
-			//		      pokemonArray[randomNum].getSPC(), pokemonArray[randomNum].getSPE(), 
-			//		      pokemonArray[randomNum].getLearnableMoves());
+			teamB[i] = new Pokemon(pokemonArray[rNum].getName(), pokemonArray[rNum].getType1(), pokemonArray[rNum].getType2(), 
+					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
+					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
+					      pokemonArray[rNum].getLearnableMoves(), pokemonArray[rNum].getFront(), pokemonArray[rNum].getBack());
 		}
 	}
 	
@@ -309,6 +354,10 @@ public class Controller {
 		int spe = 0;
 		String[] lm = {};
 		Move[] learnableMoves;
+		ImageIcon front;
+		ImageIcon back;
+		String f = "";
+		String b = "";
 		int counter = 0;
 		try {
 			//TODO move while loop to private helper method
@@ -330,6 +379,8 @@ public class Controller {
 					spc = Integer.parseInt(inputScan.next());
 					spe = Integer.parseInt(inputScan.next());
 					lm = inputScan.next().split(",");
+					f = inputScan.next();
+					b = inputScan.next();
 				}
 				//TODO move this to private helper method
 				learnableMoves = new Move[lm.length];
@@ -339,7 +390,9 @@ public class Controller {
 							learnableMoves[j] = moveArray[i];
 					}
 				}
-				pokemonArray[counter] = new Pokemon(name,type1,type2,hp,atk,def,spc,spe,learnableMoves);
+				front = new ImageIcon("src/".concat(f));
+				back = new ImageIcon("src/".concat(b));
+				pokemonArray[counter] = new Pokemon(name,type1,type2,hp,atk,def,spc,spe,learnableMoves,front,back);
 				counter++;
 			}
 			inputScan.close();
