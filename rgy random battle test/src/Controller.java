@@ -258,6 +258,7 @@ public class Controller {
 	 * Initializes two random teams of pokemon
 	 */
 	private void randomBattleInit() {
+		int n = 0;
 		Random r = new Random();
 		int rNum = r.nextInt(82);
 		Move[] ms = new Move[4];

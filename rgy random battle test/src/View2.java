@@ -394,7 +394,7 @@ public class View2 {
 		try { Thread.sleep(500);}
 		catch (InterruptedException e) {}
 		
-		spriteB.setIcon(pokeB.getBack());
+		spriteB.setIcon(new ImageIcon("src/sprites/"+pokeB.getName().trim()+".png"));
 		battlePanel.paintImmediately(battlePanel.getVisibleRect());
 		try { Thread.sleep(500);}
 		catch (InterruptedException e) {}
@@ -404,7 +404,7 @@ public class View2 {
 		try { Thread.sleep(500);}
 		catch (InterruptedException e) {}
 		
-		spriteB.setIcon(pokeB.getBack());
+		spriteB.setIcon(new ImageIcon("src/sprites/"+pokeB.getName().trim()+".png"));
 		
 		
 		if (pokeB.getHP() <= 0) {bHP.setText("HP:  " + 0);}
@@ -424,7 +424,7 @@ public class View2 {
 		try { Thread.sleep(500);}
 		catch (InterruptedException e) {}
 		
-		spriteR.setIcon(pokeR.getFront());
+		spriteR.setIcon(new ImageIcon("src/sprites/"+pokeR.getName().trim()+"2.png"));
 		battlePanel.paintImmediately(battlePanel.getVisibleRect());
 		try { Thread.sleep(500);}
 		catch (InterruptedException e) {}
@@ -434,7 +434,7 @@ public class View2 {
 		try { Thread.sleep(500);}
 		catch (InterruptedException e) {}
 		
-		spriteR.setIcon(pokeR.getFront());
+		spriteR.setIcon(new ImageIcon("src/sprites/"+pokeR.getName().trim()+"2.png"));
 		
 		if (pokeR.getHP() <= 0) {rHP.setText("HP:  " + 0);}
 		else {rHP.setText("HP:  " + pokeR.getHP());}
