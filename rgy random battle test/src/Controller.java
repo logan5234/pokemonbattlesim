@@ -268,12 +268,10 @@ public class Controller {
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
 					      pokemonArray[rNum].getLearnableMoves());
-			//System.out.print(teamR[i].getName() + teamR[i].getName().length());
 			rNum = r.nextInt(82);
 			lm = teamR[i].getLearnableMoves();
 			for (int j = 0; j < 4; j++) {
 				ms[j] = lm[r.nextInt(lm.length)];
-				//System.out.println(ms[j]);
 			}
 			teamR[i].setMoveset(ms);
 		}
@@ -282,12 +280,10 @@ public class Controller {
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
 					      pokemonArray[rNum].getLearnableMoves());
-			//System.out.print(teamB[i].getName());
 			rNum = r.nextInt(82);
 			lm = teamB[i].getLearnableMoves();
 			for (int j = 0; j < 4; j++) {
 				ms[j] = lm[r.nextInt(lm.length)];
-				//System.out.println(ms[j]);
 			}
 			teamB[i].setMoveset(ms);
 		}
@@ -437,7 +433,6 @@ public class Controller {
 		Move[] learnableMoves;
 		int counter = 0;
 		try {
-			//TODO move while loop to private helper method
 			Scanner inputScan = new Scanner(new File("src/pokemon")).useDelimiter("\\.");
 			while (counter < 82) {
 				if (inputScan.hasNextLine()) {
