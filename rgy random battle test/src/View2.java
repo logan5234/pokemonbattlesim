@@ -12,7 +12,7 @@ import javax.swing.*;
 public class View2 {
 
 	public static final int FRAMEHEIGHT = 550;
-	public static final int FRAMEWIDTH = 500;
+	public static final int FRAMEWIDTH = 600;
 	public static final int XHEIGHT = 200;
 
 	private JFrame frame;
@@ -21,6 +21,9 @@ public class View2 {
 	private JPanel teamPanel;
 	private JPanel movesPanel;
 	private JPanel commentPanel;
+	private JPanel teamBuildPanel;
+	private JPanel teamNamePanel;
+	private JPanel imagePanel;
 
 	private JLabel title;
 	private JLabel choosePoke;
@@ -31,6 +34,8 @@ public class View2 {
 	private JLabel bHP;
 	private JLabel spriteR;
 	private JLabel spriteB;
+	private JLabel pokeList;
+	private JLabel teamNameAsk;
 
 	private JButton moves[];
 	private JButton pokeOptions[];
@@ -38,14 +43,20 @@ public class View2 {
 	private JButton random;
 	private JButton exit;
 	private JButton backButton;
+	private JButton goButton;
+	private JButton goButton2;
 	//private JButton move;
 	//private JButton switchPoke;
 
 	private boolean clicked;
 	private int pmChoice;
+	private String pokeIndex;
 	private char menuChoice;
 	private Pokemon pokeChoice;
 	private Move moveChoice;
+	private ImageIcon emptyIcon;
+	private JTextArea indexChoice;
+	private JTextArea inputField;
 
 
 	public View2() {
@@ -60,6 +71,7 @@ public class View2 {
 		menuChoice = 'D';
 		pokeChoice = null;
 		moveChoice = null;
+		emptyIcon = new ImageIcon("src/emptyIcon.png");
 		title = new JLabel("Pokemon Gen 1 Battle Simulator", SwingConstants.CENTER);
 		title.setFont(new Font("Serif", Font.PLAIN, 18));
 		choosePoke = new JLabel("Choose your next Pokemon:");
@@ -126,6 +138,25 @@ public class View2 {
 		menuPanel.add(custom);
 		menuPanel.add(random);
 		menuPanel.add(exit);
+		
+		//Panel that holds the image with the list of Pokemon
+		imagePanel = new JPanel();
+		imagePanel.setSize(FRAMEWIDTH, FRAMEHEIGHT);
+		imagePanel.setLocation(0, 0);
+		pokeList = new JLabel(new ImageIcon("src/PokeList.png"));
+		imagePanel.add(pokeList);
+		
+		//Creates the screen to make a custom pokemon team
+		teamBuildPanel = new JPanel();
+		teamBuildPanel.setSize(FRAMEWIDTH, 250);
+		teamBuildPanel.setLocation(0, 310);
+		teamBuildPanel.setLayout(new GridLayout(2,1));
+		goButton = new JButton("GO");
+		goButton.addActionListener(new goButtonHandler());
+		indexChoice = new JTextArea("Enter the number of your choice");
+		teamBuildPanel.add(indexChoice, BorderLayout.CENTER);
+		teamBuildPanel.add(goButton, BorderLayout.SOUTH);
+		
 
 		//Creates screen to choose active pokemon
 		teamPanel = new JPanel();
@@ -147,6 +178,18 @@ public class View2 {
 		commentPanel.setSize(FRAMEWIDTH, XHEIGHT);
 		commentPanel.setLocation(0, FRAMEHEIGHT - XHEIGHT);
 		commentPanel.add(comments);
+		
+		teamNamePanel = new JPanel();
+		teamNamePanel.setSize(FRAMEWIDTH, FRAMEHEIGHT);
+		teamNamePanel.setLocation(0, 0);
+		teamNamePanel.setLayout(new GridLayout(3,1));
+		teamNameAsk = new JLabel("Choose your team name default");
+		goButton2 = new JButton("GO");
+		goButton2.addActionListener(new goButtonHandler2());
+		inputField = new JTextArea();
+		teamNamePanel.add(teamNameAsk);
+		teamNamePanel.add(inputField);
+		teamNamePanel.add(goButton2);
 		
 		frame.setVisible(true); 
 	}
@@ -196,6 +239,39 @@ public class View2 {
 		return moveChoice;
 	}
 	
+	public String buildTeam() {
+		frame.add(imagePanel);
+		frame.add(teamBuildPanel);
+		frame.setVisible(true);
+		
+		clicked = false;
+		while (!clicked) {
+			try { Thread.sleep(200);}
+			catch (InterruptedException e) {}
+		}
+		
+		frame.remove(teamBuildPanel);
+		frame.remove(imagePanel);
+		frame.setVisible(true);
+		return pokeIndex;
+	}
+	
+	public String chooseTeamName(int n) {
+		teamNameAsk.setText("Player " + n + " choose your name:");
+		frame.add(teamNamePanel);
+		frame.setVisible(true);
+		
+		clicked = false;
+		while (!clicked) {
+			try { Thread.sleep(200);}
+			catch (InterruptedException e) {}
+		}
+		
+		frame.remove(teamNamePanel);
+		frame.setVisible(true);
+		return pokeIndex;
+	}
+	
 	public Pokemon choosePoke(Pokemon[] teamX) {
 		for (int i = 0; i < 6; i++) {
 		pokeOptions[i].setText(teamX[i].getName() + "/" + teamX[i].getHP());
@@ -234,6 +310,7 @@ public class View2 {
 		bHP.setHorizontalAlignment(SwingConstants.RIGHT);
 		spriteR.setIcon(pokeR.getBack());
 		spriteB.setIcon(pokeB.getFront());
+		
 		//spriteR = new JLabel(new ImageIcon("Charizard2.png"));
 		//spriteB = new ImageIcon("Ninetales.png");
 		//Total vs current HP??
@@ -263,6 +340,55 @@ public class View2 {
 		commentPanel.paintImmediately(commentPanel.getVisibleRect());
 		try { Thread.sleep(2000);}
 		catch (InterruptedException e) {}
+	}
+	
+	public void moveUpdateR(Pokemon pokeR, Pokemon pokeB) {
+		spriteB.setIcon(emptyIcon);
+		battlePanel.paintImmediately(battlePanel.getVisibleRect());
+		try { Thread.sleep(500);}
+		catch (InterruptedException e) {}
+		
+		spriteB.setIcon(pokeB.getBack());
+		battlePanel.paintImmediately(battlePanel.getVisibleRect());
+		try { Thread.sleep(500);}
+		catch (InterruptedException e) {}
+		
+		spriteB.setIcon(emptyIcon);
+		battlePanel.paintImmediately(battlePanel.getVisibleRect());
+		try { Thread.sleep(500);}
+		catch (InterruptedException e) {}
+		
+		spriteB.setIcon(pokeB.getBack());
+		
+		
+		if (pokeB.getHP() <= 0) {bHP.setText("HP:  " + 0);}
+		else {bHP.setText("HP:  " + pokeB.getHP());}
+		
+		frame.setVisible(true);
+	}
+	
+	public void moveUpdateB(Pokemon pokeR, Pokemon pokeB) {
+		spriteR.setIcon(emptyIcon);
+		battlePanel.paintImmediately(battlePanel.getVisibleRect());
+		try { Thread.sleep(500);}
+		catch (InterruptedException e) {}
+		
+		spriteR.setIcon(pokeR.getFront());
+		battlePanel.paintImmediately(battlePanel.getVisibleRect());
+		try { Thread.sleep(500);}
+		catch (InterruptedException e) {}
+		
+		spriteR.setIcon(emptyIcon);
+		battlePanel.paintImmediately(battlePanel.getVisibleRect());
+		try { Thread.sleep(500);}
+		catch (InterruptedException e) {}
+		
+		spriteR.setIcon(pokeR.getFront());
+		
+		if (pokeR.getHP() <= 0) {rHP.setText("HP:  " + 0);}
+		else {rHP.setText("HP:  " + pokeR.getHP());}
+		
+		frame.setVisible(true);
 	}
 	
 	public void exit() { System.exit(0); }
@@ -330,6 +456,18 @@ public class View2 {
 	private class pm5Handler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			pmChoice = 5;
+			clicked = true;
+		}
+	}
+	private class goButtonHandler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			pokeIndex = indexChoice.getText();
+			clicked = true;
+		}
+	}
+	private class goButtonHandler2 implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			pokeIndex = inputField.getText();
 			clicked = true;
 		}
 	}
