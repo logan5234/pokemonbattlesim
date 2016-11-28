@@ -74,7 +74,7 @@ public class Pokemon {
 		special = spc;
 		speed = spe;
 		learnableMoves = ls;
-		//frontSprite = createImageIcon("src/sprites/"+name+"2.png",name);
+		frontSprite = new ImageIcon("src/sprites/"+name+"2.png");
 		backSprite = new ImageIcon("src/sprites/"+name+".png");
 	}
 	
@@ -165,10 +165,17 @@ public class Pokemon {
 	public Move[] getLearnableMoves() {
 		return learnableMoves;
 	}
+	/**
+	 * Getter for front sprite
+	 * @return the front sprite
+	 */
 	public ImageIcon getFront() {
 		return frontSprite;
 	}
-	
+	/**
+	 * Getter for back sprite
+	 * @return the back sprite
+	 */
 	public ImageIcon getBack() {
 		return backSprite;
 	}
@@ -238,9 +245,17 @@ public class Pokemon {
 	public void setMoveset(Move[] ms) {
 		moveset = ms;
 	}
+	/**
+	 * Sets the front sprite of the pokemon
+	 * @param f to be set to
+	 */
 	public void setFront(ImageIcon f) {
 		frontSprite = f;
 	}
+	/**
+	 * Sets the back sprite of the pokemon
+	 * @param b to be set to
+	 */
 	public void setBack(ImageIcon b) {
 		backSprite = b;
 	}

@@ -37,7 +37,7 @@ public class Controller {
 
 	/**
 	* Contructor
-	* 
+	* Commented out testing
 	*/
 	public Controller() {
 		v = new View2();
@@ -69,7 +69,6 @@ public class Controller {
 		menuChoice = v.mainMenu();
 		while (true) {
 		if (menuChoice == 'C') {
-			//for testing purposes
 			rName = customTeamBuilder(1);
 			bName = customTeamBuilder(2);
 			String w = battleLoop(rName, bName);
@@ -108,13 +107,15 @@ public class Controller {
 			v.setUpBattle(pokeR, pokeB);
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
-				//v.commentary(redName + " sent out " + pokeR.getName() + ", " + blueName + " sent out " + pokeB.getName());
+				v.commentary(redName + " sent out " + pokeR.getName() + ", " + blueName + " sent out " + pokeB.getName());
 				validChoice = false;
+				v.commentary("Player 1 choose your move.");
 				while (!validChoice) {
 					moveR = v.chooseMove(pokeR.getMoveset());
 					if (moveR.getPP() > 0) {validChoice = true;}
 				}
 				validChoice = false;
+				v.commentary("Player 2 choose your move.");
 				while (!validChoice) {
 					moveB = v.chooseMove(pokeB.getMoveset());
 					if (moveB.getPP() > 0) {validChoice = true;}
@@ -146,7 +147,7 @@ public class Controller {
 					if (healthB > 0) {
 						useMoveB();
 						v.commentary(pokeB.getName() + " used " + moveB.getName());
-					} } 
+					} }
 				 else {
 					useMoveB();
 					v.commentary(pokeB.getName() + " used " + moveB.getName());
@@ -189,6 +190,7 @@ public class Controller {
 					v.commentary(redName + " sent out " + pokeR);
 					healthR = pokeR.getHP();
 					speedR = pokeR.getSPE();
+					v.switchPokeR(pokeR);
 				}
 				if (!win && healthB <= 0) { 
 					validChoice = false;
@@ -199,34 +201,62 @@ public class Controller {
 					v.commentary(blueName + " sent out " + pokeB);
 					healthB = pokeB.getHP();
 					speedB = pokeB.getSPE();
+					v.switchPokeB(pokeB);
 				}
 			}
 		}
 		return winner;
 	}
 	
+	/**
+	 * Runs the teambuilder to make custom teams of pokemon the user chooses
+	 * @param n team number
+	 * @return the name of the team
+	 */
 	private String customTeamBuilder(int n) {
+		Random r = new Random();
+		Move[] lm = {};
+		Move[] ms = new Move[4];
 		String s = v.chooseTeamName(n);
 		for (int i = 0; i < 6; i++) {
 			validChoice = false;
 			while (!validChoice) {
 				String x = v.buildTeam();
-				pokeNum = Integer.parseInt(x);
+				pokeNum = Integer.parseInt(x)-1;
 				if (pokeNum > 0 && pokeNum < 82) {validChoice = true;}
+			}
+				if (n == 1) {
+					teamR[i] = new Pokemon(pokemonArray[pokeNum].getName(), pokemonArray[pokeNum].getType1(), pokemonArray[pokeNum].getType2(), 
+							pokemonArray[pokeNum].getHP(), pokemonArray[pokeNum].getATK(), pokemonArray[pokeNum].getDEF(), 
+							pokemonArray[pokeNum].getSPC(), pokemonArray[pokeNum].getSPE(), 
+							pokemonArray[pokeNum].getLearnableMoves());
+					System.out.print(teamR[i].getName());
+					lm = teamR[i].getLearnableMoves();
+					for (int j = 0; j < 4; j++) {
+						ms[j] = lm[r.nextInt(lm.length)];
+						System.out.println(ms[j]);
+					}
+					teamR[i].setMoveset(ms);
+				} else {
+					teamB[i] = new Pokemon(pokemonArray[pokeNum].getName(), pokemonArray[pokeNum].getType1(), pokemonArray[pokeNum].getType2(), 
+							pokemonArray[pokeNum].getHP(), pokemonArray[pokeNum].getATK(), pokemonArray[pokeNum].getDEF(), 
+							pokemonArray[pokeNum].getSPC(), pokemonArray[pokeNum].getSPE(), 
+							pokemonArray[pokeNum].getLearnableMoves());
+					System.out.print(teamB[i].getName());
+					lm = teamB[i].getLearnableMoves();
+					for (int j = 0; j < 4; j++) {
+						ms[j] = lm[r.nextInt(lm.length)];
+						System.out.println(ms[j]);
+					}
+					teamB[i].setMoveset(ms);
 				}
-				if (n == 1) {teamR[i] = new Pokemon(pokemonArray[pokeNum].getName(), pokemonArray[pokeNum].getType1(), pokemonArray[pokeNum].getType2(), 
-					pokemonArray[pokeNum].getHP(), pokemonArray[pokeNum].getATK(), pokemonArray[pokeNum].getDEF(), 
-					pokemonArray[pokeNum].getSPC(), pokemonArray[pokeNum].getSPE(), 
-					pokemonArray[pokeNum].getLearnableMoves());}
-				else {teamB[i] = new Pokemon(pokemonArray[pokeNum].getName(), pokemonArray[pokeNum].getType1(), pokemonArray[pokeNum].getType2(), 
-					pokemonArray[pokeNum].getHP(), pokemonArray[pokeNum].getATK(), pokemonArray[pokeNum].getDEF(), 
-					pokemonArray[pokeNum].getSPC(), pokemonArray[pokeNum].getSPE(), 
-					pokemonArray[pokeNum].getLearnableMoves());}
 		}
 		return s;
 	}
 	
-	
+	/**
+	 * Initializes two random teams of pokemon
+	 */
 	private void randomBattleInit() {
 		Random r = new Random();
 		int rNum = r.nextInt(82);
@@ -238,12 +268,12 @@ public class Controller {
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
 					      pokemonArray[rNum].getLearnableMoves());
-			System.out.print(teamR[i].getName());
+			//System.out.print(teamR[i].getName() + teamR[i].getName().length());
 			rNum = r.nextInt(82);
 			lm = teamR[i].getLearnableMoves();
 			for (int j = 0; j < 4; j++) {
 				ms[j] = lm[r.nextInt(lm.length)];
-				System.out.println(ms[j]);
+				//System.out.println(ms[j]);
 			}
 			teamR[i].setMoveset(ms);
 		}
@@ -252,12 +282,12 @@ public class Controller {
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
 					      pokemonArray[rNum].getLearnableMoves());
-			System.out.print(teamB[i].getName());
+			//System.out.print(teamB[i].getName());
 			rNum = r.nextInt(82);
 			lm = teamB[i].getLearnableMoves();
 			for (int j = 0; j < 4; j++) {
 				ms[j] = lm[r.nextInt(lm.length)];
-				System.out.println(ms[j]);
+				//System.out.println(ms[j]);
 			}
 			teamB[i].setMoveset(ms);
 		}
@@ -293,21 +323,23 @@ public class Controller {
 	
 	
 	/**
-	 * 
+	 * Uses player 1's selected move
 	 */
 	private void useMoveR() {
-		if (!moveR.getType().equals("Status")) {
+		if (!moveR.getDamageType().equals("Status")) {
 			pokeB.setHP((int) (pokeB.getHP() - damageCalc(pokeR,pokeB,moveR)));
+			healthB = (int) (pokeB.getHP() - damageCalc(pokeR,pokeB,moveR));
 		}
 		//do effect
 		v.moveUpdateR(pokeR, pokeB);
 	}
 	/**
-	 * 
+	 * Uses player 2's selected move
 	 */
 	private void useMoveB() {
-		if (!moveB.getType().equals("Status")) {
+		if (!moveB.getDamageType().equals("Status")) {
 			pokeR.setHP((int) (pokeR.getHP() - damageCalc(pokeB,pokeR,moveB)));
+			healthR = (int) (pokeB.getHP() - damageCalc(pokeR,pokeB,moveR));
 		}
 		//do effect
 		v.moveUpdateB(pokeR,pokeB);

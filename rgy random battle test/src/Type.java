@@ -43,10 +43,14 @@ public class Type {
 	public String[] getResists() {
 		return resists;
 	}
+	/**
+	 * Getter for immunities array
+	 * @return immunities array
+	 */
 	public String[] getImmunes() {
 		return immunes;
 	}
-	/** THIS ACTUALLY WORKS I'M A GENIUS
+	/**
 	 * Determines the effectiveness of a given type vs another type
 	 * @param moveType the type of the move used against the pokemon of this type
 	 * @return double to multiply the move's damage by
@@ -65,6 +69,9 @@ public class Type {
 		return result;
 	}
 	
+	/**
+	 * toString
+	 */
 	public String toString() {
 		return type;
 	}

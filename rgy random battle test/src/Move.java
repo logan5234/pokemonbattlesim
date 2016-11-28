@@ -53,6 +53,11 @@ public class Move {
 		effect = determineEffect();
 	}
 	
+	/**
+	 * Determines the effect of the move based on the description
+	 * @return index for a certain effect
+	 * TODO write effects
+	 */
 	private int determineEffect() {
 		int result = -1;
 		

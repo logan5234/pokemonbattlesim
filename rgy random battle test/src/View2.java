@@ -59,6 +59,9 @@ public class View2 {
 	private JTextArea inputField;
 
 
+	/**
+	 * Giant ugly constructor to setup the application window
+	 */
 	public View2() {
 		frame = new JFrame();
 		frame.setLayout(null);
@@ -183,7 +186,7 @@ public class View2 {
 		teamNamePanel.setSize(FRAMEWIDTH, FRAMEHEIGHT);
 		teamNamePanel.setLocation(0, 0);
 		teamNamePanel.setLayout(new GridLayout(3,1));
-		teamNameAsk = new JLabel("Choose your team name default");
+		teamNameAsk = new JLabel("Choose your team name default",SwingConstants.CENTER);
 		goButton2 = new JButton("GO");
 		goButton2.addActionListener(new goButtonHandler2());
 		inputField = new JTextArea();
@@ -191,9 +194,14 @@ public class View2 {
 		teamNamePanel.add(inputField);
 		teamNamePanel.add(goButton2);
 		
+		frame.setTitle("Pokemon Gen 1 Battle Sim");
 		frame.setVisible(true); 
 	}
-
+	
+	/**
+	 * Main menu for the program
+	 * @return the selection made my the user
+	 */
 	public char mainMenu() {
 		//set up menu display
 		frame.add(menuPanel);
@@ -213,6 +221,11 @@ public class View2 {
 		return menuChoice;
 	}
 	
+	/**
+	 * Displays move list for user to choose from
+	 * @param moveList the current pokemon's moves
+	 * @return the move the user selected
+	 */
 	public Move chooseMove(Move[] moveList) {
 		for (int i = 0; i < 4; i++) {
 			moves[i].setText(moveList[i].getName() + "/" + moveList[i].getPP());
@@ -239,6 +252,10 @@ public class View2 {
 		return moveChoice;
 	}
 	
+	/**
+	 * Panel to create your own team of pokemon
+	 * @return the index of the pokemon the user entered
+	 */
 	public String buildTeam() {
 		frame.add(imagePanel);
 		frame.add(teamBuildPanel);
@@ -256,6 +273,11 @@ public class View2 {
 		return pokeIndex;
 	}
 	
+	/**
+	 * Panel to name your custom team
+	 * @param n team number
+	 * @return the name entered by the user
+	 */
 	public String chooseTeamName(int n) {
 		teamNameAsk.setText("Player " + n + " choose your name:");
 		frame.add(teamNamePanel);
@@ -272,16 +294,21 @@ public class View2 {
 		return pokeIndex;
 	}
 	
+	/**
+	 * Menu to select pokemon to use next in battle
+	 * @param teamX the team to select from
+	 * @return the selected pokemon
+	 */
 	public Pokemon choosePoke(Pokemon[] teamX) {
 		for (int i = 0; i < 6; i++) {
-		pokeOptions[i].setText(teamX[i].getName() + "/" + teamX[i].getHP());
+			pokeOptions[i].setText(teamX[i].getName() + "/" + teamX[i].getHP());
 		}
 		
 		frame.remove(battlePanel);
 		frame.remove(commentPanel);
 		frame.add(teamPanel);
+		teamPanel.setVisible(true);
 		frame.setVisible(true);
-		
 		pmChoice = 3;
 		clicked = false;
 		
@@ -292,13 +319,18 @@ public class View2 {
 		
 		pokeChoice = teamX[pmChoice];
 		frame.remove(teamPanel);
+		teamPanel.setVisible(false);
 		frame.add(battlePanel);
 		frame.add(commentPanel);
 		frame.setVisible(true);
-
 		return pokeChoice;
 	}
 	
+	/**
+	 * Sets up the battle pane
+	 * @param pokeR player 1's pokemon
+	 * @param pokeB player 2's pokemon
+	 */
 	public void setUpBattle(Pokemon pokeR, Pokemon pokeB) {
 		rName.setText(pokeR.getName());
 		rName.setHorizontalAlignment(SwingConstants.LEFT);
@@ -308,9 +340,8 @@ public class View2 {
 		rHP.setHorizontalAlignment(SwingConstants.LEFT);
 		bHP.setText("HP:  " + pokeB.getHP());
 		bHP.setHorizontalAlignment(SwingConstants.RIGHT);
-		spriteR.setIcon(pokeR.getBack());
-		spriteB.setIcon(pokeB.getFront());
-		
+		spriteR.setIcon(new ImageIcon("src/sprites/"+pokeR.getName().trim()+"2.png"));
+		spriteB.setIcon(new ImageIcon("src/sprites/"+pokeB.getName().trim()+".png"));
 		//spriteR = new JLabel(new ImageIcon("Charizard2.png"));
 		//spriteB = new ImageIcon("Ninetales.png");
 		//Total vs current HP??
@@ -321,20 +352,30 @@ public class View2 {
 		frame.setVisible(true);
 	
 	}
+	/**
+	 * Switches player 1's pokemon
+	 * @param x pokemon to switch to
+	 */
 	public void switchPokeR(Pokemon x) {
 		rName.setText(x.getName());
-		//spriteR = x.getSprite();
-		//Get HP
-		
+		spriteR.setIcon(new ImageIcon("src/sprites/"+x.getName().trim()+"2.png"));
+		rHP.setText("HP: "+x.getHP()); 
 	}
 	
+	/**
+	 * Switches player 2's pokemon
+	 * @param x pokemon to switch to
+	 */
 	public void switchPokeB(Pokemon x) {
 		bName.setText(x.getName());
-		//spriteB = x.getSprite();
-		//Get HP
-		
+		spriteB.setIcon(new ImageIcon("src/sprites/"+x.getName().trim()+".png"));
+		bHP.setText("HP: "+x.getHP());
 	}
 	
+	/**
+	 * Displays any commentary or announcements made throughout the battle
+	 * @param x String to display
+	 */
 	public void commentary(String x) {
 		comments.setText(x);
 		commentPanel.paintImmediately(commentPanel.getVisibleRect());
@@ -342,6 +383,11 @@ public class View2 {
 		catch (InterruptedException e) {}
 	}
 	
+	/**
+	 * Flashes pokemon sprite and updates HP
+	 * @param pokeR player 1's pokemon
+	 * @param pokeB player 2's pokemon
+	 */
 	public void moveUpdateR(Pokemon pokeR, Pokemon pokeB) {
 		spriteB.setIcon(emptyIcon);
 		battlePanel.paintImmediately(battlePanel.getVisibleRect());
@@ -367,6 +413,11 @@ public class View2 {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Flashes pokemon sprite and updates HP
+	 * @param pokeR player 1's pokemon
+	 * @param pokeB player 2's pokemon
+	 */
 	public void moveUpdateB(Pokemon pokeR, Pokemon pokeB) {
 		spriteR.setIcon(emptyIcon);
 		battlePanel.paintImmediately(battlePanel.getVisibleRect());
@@ -391,12 +442,15 @@ public class View2 {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Exits the program
+	 */
 	public void exit() { System.exit(0); }
 	
 	/**
 	* Button handlers for ALL THOSE BUTTONS.  Sets clicked to true and returns the button number or abbreviation.
 	*/
-
+	
 	private class customButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			menuChoice = 'C';
