@@ -28,6 +28,7 @@ public class Controller {
 	private Move moveB;
 	private int speedR;
 	private int speedB;
+	private int pokeNum;
 	private String rName;
 	private String bName;
 	private Type[] typeArray;
@@ -45,6 +46,10 @@ public class Controller {
 		pokemonArray = initPokemonArray();
 		
 		//View testing section
+		String answer = v.buildTeam();
+		System.out.println(answer);
+		String nameAnswer = v.chooseTeamName(1);
+		System.out.println(nameAnswer);
 		Pokemon[] teamX = {pokemonArray[4], pokemonArray[72], pokemonArray[81], pokemonArray[56], pokemonArray[0], pokemonArray[22]};
 		Pokemon chosen = v.choosePoke(teamX);
 		Move[] setX = {moveArray[1], moveArray[4], moveArray[20], moveArray[45]};
@@ -53,18 +58,19 @@ public class Controller {
 		Move m = v.chooseMove(setX);
 		//System.out.println(m.getName());
 		//v.commentary("Overlap working?");
-		Move[] moveSetX = pokemonArray[44].getLearnableMoves();
+		//Move[] moveSetX = pokemonArray[44].getLearnableMoves();
 		//System.out.println(moveSetX[1].toString());
 		
 		
 		win = false;
 		someoneLeftAlive = false;
+		pokeNum = 100;
 		menuChoice = v.mainMenu();
 		while (true) {
 		if (menuChoice == 'C') {
 			//for testing purposes
-			//rName = customTeamBuilder();
-			//bName = customTeamBuilder();
+			rName = customTeamBuilder(1);
+			bName = customTeamBuilder(2);
 			String w = battleLoop(rName, bName);
 			v.commentary(w + " has won the battle");
 			menuChoice = v.mainMenu();
@@ -216,6 +222,27 @@ public class Controller {
 		}
 	}
 	
+	private String customTeamBuilder(int n) {
+		String s = v.chooseTeamName(n);
+		for (int i = 0; i < 6; i++) {
+			validChoice = false;
+			while (!validChoice) {
+				String x = v.buildTeam();
+				pokeNum = Integer.parseInt(x);
+				if (pokeNum > 0 && pokeNum < 82) {validChoice = true;}
+			}
+			if (n == 1) {teamR[i] = new Pokemon(pokemonArray[pokeNum].getName(), pokemonArray[pokeNum].getType1(), pokemonArray[pokeNum].getType2(), 
+				      pokemonArray[pokeNum].getHP(), pokemonArray[pokeNum].getATK(), pokemonArray[pokeNum].getDEF(), 
+				      pokemonArray[pokeNum].getSPC(), pokemonArray[pokeNum].getSPE(), 
+				      pokemonArray[pokeNum].getLearnableMoves());}
+			else {teamB[i] = new Pokemon(pokemonArray[pokeNum].getName(), pokemonArray[pokeNum].getType1(), pokemonArray[pokeNum].getType2(), 
+				      pokemonArray[pokeNum].getHP(), pokemonArray[pokeNum].getATK(), pokemonArray[pokeNum].getDEF(), 
+				      pokemonArray[pokeNum].getSPC(), pokemonArray[pokeNum].getSPE(), 
+				      pokemonArray[pokeNum].getLearnableMoves());}
+		}
+		return s;
+	}
+	
 	/**
 	 * Calculates the damage a given move will cause on a given pokemon
 	 * @param user		the pokemon that used the move
@@ -253,6 +280,7 @@ public class Controller {
 			pokeB.setHP((int) (pokeB.getHP() - damageCalc(pokeR,pokeB,moveR)));
 		}
 		//do effect
+		v.moveUpdateR(pokeR, pokeB);
 	}
 	/**
 	 * 
@@ -262,6 +290,7 @@ public class Controller {
 			pokeR.setHP((int) (pokeR.getHP() - damageCalc(pokeB,pokeR,moveB)));
 		}
 		//do effect
+		v.moveUpdateB(pokeR, pokeB);
 	}
 	
 	/**
@@ -380,9 +409,9 @@ public class Controller {
 				learnableMoves = new Move[lm.length];
 				for (int i = 0;i < 160;i++) {
 					for (int j = 0;j < lm.length;j++) {
-						if (lm[j] == moveArray[i].getName())
-							learnableMoves[j] = moveArray[i];
-					}
+						if (lm[j].compareTo(moveArray[i].getName()) == 0) {
+							learnableMoves[j]= moveArray[i];
+					}}
 				}
 				pokemonArray[counter] = new Pokemon(name,type1,type2,hp,atk,def,spc,spe,learnableMoves);
 				counter++;
