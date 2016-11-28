@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import javax.swing.ImageIcon;
 
@@ -73,7 +74,7 @@ public class Pokemon {
 		special = spc;
 		speed = spe;
 		learnableMoves = ls;
-		frontSprite = new ImageIcon("src/sprites/"+name+"2.png");
+		//frontSprite = createImageIcon("src/sprites/"+name+"2.png",name);
 		backSprite = new ImageIcon("src/sprites/"+name+".png");
 	}
 	

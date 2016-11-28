@@ -302,7 +302,7 @@ public class Controller {
 	 * @return array of Move objects including every move available to pokemon
 	 */
 	private Move[] initMoveArray() {
-		Move[] moveArray = new Move[160];
+		Move[] moveArray = new Move[161];
 		String name = "";
 		Type type = typeArray[0];
 		String inputType = "";
@@ -314,7 +314,7 @@ public class Controller {
 		int counter = 0;
 		try {
 			Scanner inputScan = new Scanner(new File("src/moves")).useDelimiter(",");
-			while (counter < 160) {
+			while (counter < 161) {
 				if (inputScan.hasNextLine()) {
 					name = inputScan.next();
 					inputType = inputScan.next();
@@ -378,11 +378,9 @@ public class Controller {
 				}
 				//TODO move this to private helper method
 				learnableMoves = new Move[lm.length];
-				for (int i = 0;i < 160;i++) {
-					for (int j = 0;j < lm.length;j++) {
-						if (lm[j] == moveArray[i].getName())
-							learnableMoves[j] = moveArray[i];
-					}
+				for (int i = 0; i < lm.length; i++) {
+					int j = Integer.parseInt(lm[i]);
+					learnableMoves[i] = moveArray[j];
 				}
 				pokemonArray[counter] = new Pokemon(name,type1,type2,hp,atk,def,spc,spe,learnableMoves);
 				counter++;
