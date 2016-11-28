@@ -45,8 +45,6 @@ public class View2 {
 	private JButton backButton;
 	private JButton goButton;
 	private JButton goButton2;
-	//private JButton move;
-	//private JButton switchPoke;
 
 	private boolean clicked;
 	private int pmChoice;
@@ -108,13 +106,8 @@ public class View2 {
 		exit = new JButton("Exit");
 		exit.addActionListener(new exitButtonHandler());
 		backButton = new JButton("Back");
-		
-		//move = new JButton("Choose Move");
-		//switchPoke = new JButton("Switch Pokemon");
-		//set up ImageIcons for active pokemon
 
 		//Creates battle screen and sets up its implements
-		//TODO- figure out how to give this elements that make it work
 		battlePanel = new JPanel();
 		battlePanel.setSize(FRAMEWIDTH, FRAMEHEIGHT - XHEIGHT);
 		battlePanel.setLocation(0, 0);
@@ -128,9 +121,6 @@ public class View2 {
 		spriteB = new JLabel(new ImageIcon("src/Pikachu.png"));
 		battlePanel.add(spriteR);
 		battlePanel.add(spriteB);
-		
-		//battlePanel.add(rHP, BorderLayout.NORTH);
-		//battlePanel.add(bHP, BorderLayout.NORTH);
 
 		//Creates menu screen and sets up its implements
 		menuPanel = new JPanel();
@@ -203,12 +193,11 @@ public class View2 {
 	 * @return the selection made my the user
 	 */
 	public char mainMenu() {
-		//set up menu display
+		//sets up menu display
 		frame.add(menuPanel);
-		//menuPanel.paintImmediately(menuPanel.getVisibleRect());
 		frame.setVisible(true);
 		clicked = false;
-		menuChoice = 'D'; //D = no choice was made somehow
+		menuChoice = 'D';
 
 		//checks if user has made a choice yet
 		while (!clicked) {
@@ -229,7 +218,6 @@ public class View2 {
 	public Move chooseMove(Move[] moveList) {
 		for (int i = 0; i < 4; i++) {
 			moves[i].setText(moveList[i].getName() + "/" + moveList[i].getPP());
-			//moves[i].setText(moveList[i].getName());
 		}
 		
 		frame.remove(commentPanel);
@@ -342,11 +330,7 @@ public class View2 {
 		bHP.setHorizontalAlignment(SwingConstants.RIGHT);
 		spriteR.setIcon(new ImageIcon("src/sprites/"+pokeR.getName().trim()+"2.png"));
 		spriteB.setIcon(new ImageIcon("src/sprites/"+pokeB.getName().trim()+".png"));
-		//spriteR = new JLabel(new ImageIcon("Charizard2.png"));
-		//spriteB = new ImageIcon("Ninetales.png");
-		//Total vs current HP??
-		//rHP.setText(pokeR.getHP() + "/" + pokeR.getHP());
-		//bHP = 
+		
 		frame.add(battlePanel);
 		frame.add(commentPanel);
 		frame.setVisible(true);
