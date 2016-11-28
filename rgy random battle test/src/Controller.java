@@ -75,7 +75,6 @@ public class Controller {
 			v.commentary(w + " has won the battle");
 			menuChoice = v.mainMenu();
 		} else if (menuChoice == 'R') {
-			//random battle
 			randomBattleInit();
 			rName = "Red";
 			bName = "Blue";
@@ -269,12 +268,10 @@ public class Controller {
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
 					      pokemonArray[rNum].getLearnableMoves());
-			//System.out.print(teamR[i].getName() + teamR[i].getName().length());
 			rNum = r.nextInt(82);
 			lm = teamR[i].getLearnableMoves();
 			for (int j = 0; j < 4; j++) {
 				ms[j] = lm[r.nextInt(lm.length)];
-				//System.out.println(ms[j]);
 			}
 			teamR[i].setMoveset(ms);
 		}
@@ -283,12 +280,10 @@ public class Controller {
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
 					      pokemonArray[rNum].getLearnableMoves());
-			//System.out.print(teamB[i].getName());
 			rNum = r.nextInt(82);
 			lm = teamB[i].getLearnableMoves();
 			for (int j = 0; j < 4; j++) {
 				ms[j] = lm[r.nextInt(lm.length)];
-				//System.out.println(ms[j]);
 			}
 			teamB[i].setMoveset(ms);
 		}
@@ -373,7 +368,6 @@ public class Controller {
 			}
 			inputScan.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return typeArray;
@@ -469,7 +463,6 @@ public class Controller {
 			}
 			inputScan.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return pokemonArray;
