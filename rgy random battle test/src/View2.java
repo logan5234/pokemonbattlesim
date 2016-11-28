@@ -215,7 +215,7 @@ public class View2 {
 	
 	public Move chooseMove(Move[] moveList) {
 		for (int i = 0; i < 4; i++) {
-		moves[i].setText(moveList[i].getName() + "/" + moveList[i].getPP());
+			moves[i].setText(moveList[i].getName() + "/" + moveList[i].getPP());
 			//moves[i].setText(moveList[i].getName());
 		}
 		

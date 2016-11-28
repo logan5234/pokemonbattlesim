@@ -44,9 +44,11 @@ public class Controller {
 		typeArray = initTypeArray();
 		moveArray = initMoveArray();
 		pokemonArray = initPokemonArray();
+		teamR = new Pokemon[6];
+		teamB = new Pokemon[6];
 		
 		//View testing section
-		String answer = v.buildTeam();
+		/*String answer = v.buildTeam();
 		System.out.println(answer);
 		String nameAnswer = v.chooseTeamName(1);
 		System.out.println(nameAnswer);
@@ -56,10 +58,10 @@ public class Controller {
 		v.setUpBattle(pokemonArray[22], pokemonArray[4]);
 		v.commentary(chosen.getName());
 		Move m = v.chooseMove(setX);
-		//System.out.println(m.getName());
-		//v.commentary("Overlap working?");
-		//Move[] moveSetX = pokemonArray[44].getLearnableMoves();
-		//System.out.println(moveSetX[1].toString());
+		System.out.println(m.getName());
+		v.commentary("Overlap working?");
+		Move[] moveSetX = pokemonArray[44].getLearnableMoves();
+		System.out.println(moveSetX[1].toString());*/
 		
 		
 		win = false;
@@ -103,6 +105,7 @@ public class Controller {
 
 
 		while (!win) {
+			v.setUpBattle(pokeR, pokeB);
 			//compare speed, higher speed moves first
 			while (healthR > 0 && healthB > 0) {
 				//v.commentary(redName + " sent out " + pokeR.getName() + ", " + blueName + " sent out " + pokeB.getName());
@@ -227,19 +230,36 @@ public class Controller {
 	private void randomBattleInit() {
 		Random r = new Random();
 		int rNum = r.nextInt(82);
+		Move[] ms = new Move[4];
+		Move[] lm = {};
 		System.out.println(rNum);
 		for (int i = 0; i < 6; i++) {
 			teamR[i] = new Pokemon(pokemonArray[rNum].getName(), pokemonArray[rNum].getType1(), pokemonArray[rNum].getType2(), 
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
 					      pokemonArray[rNum].getLearnableMoves());
+			System.out.print(teamR[i].getName());
+			rNum = r.nextInt(82);
+			lm = teamR[i].getLearnableMoves();
+			for (int j = 0; j < 4; j++) {
+				ms[j] = lm[r.nextInt(lm.length)];
+				System.out.println(ms[j]);
+			}
+			teamR[i].setMoveset(ms);
 		}
-		rNum = r.nextInt(82);
 		for (int i = 0; i < 6; i++) {
 			teamB[i] = new Pokemon(pokemonArray[rNum].getName(), pokemonArray[rNum].getType1(), pokemonArray[rNum].getType2(), 
 					      pokemonArray[rNum].getHP(), pokemonArray[rNum].getATK(), pokemonArray[rNum].getDEF(), 
 					      pokemonArray[rNum].getSPC(), pokemonArray[rNum].getSPE(), 
 					      pokemonArray[rNum].getLearnableMoves());
+			System.out.print(teamB[i].getName());
+			rNum = r.nextInt(82);
+			lm = teamB[i].getLearnableMoves();
+			for (int j = 0; j < 4; j++) {
+				ms[j] = lm[r.nextInt(lm.length)];
+				System.out.println(ms[j]);
+			}
+			teamB[i].setMoveset(ms);
 		}
 	}
 	
